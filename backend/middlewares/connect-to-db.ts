@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
-import { DatabaseConnectionError } from '@/errors/database-connections-error';
+import { DatabaseConnectionError } from 'backend/errors/database-connections-error';
 
 let client: MongoClient | null = null;
 
