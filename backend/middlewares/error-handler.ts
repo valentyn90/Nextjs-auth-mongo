@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse, NextApiHandler } from 'next';
-import { CustomError } from '@/errors/custom-error';
+import { CustomError } from 'backend/errors/custom-error';
 
 export const errorHandler = (nextApiHandler: NextApiHandler) => async (
   req: NextApiRequest,
@@ -12,7 +12,7 @@ export const errorHandler = (nextApiHandler: NextApiHandler) => async (
       return res.status(err.statusCode).send({ errors: err.serializeErrors() });
     }
     res.status(500).send({
-      errors: [{ message: 'Something went wrong' }],
+      errors: [{ message: err.message }],
     });
   }
 };
