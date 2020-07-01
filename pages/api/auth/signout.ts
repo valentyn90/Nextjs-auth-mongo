@@ -6,7 +6,7 @@ import { errorHandler } from 'backend/middlewares/error-handler';
 const routeHandler: NextApiHandler = (req, res) => {
   if (req.method === 'POST') {
     res.setHeader('Set-Cookie', 'jwt=deleted; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT');
-    return res.send({});
+    return res.json({});
   }
   throw new NotFoundError();
 };

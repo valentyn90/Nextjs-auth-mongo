@@ -49,7 +49,7 @@ const routeHandler: NextApiHandler = async (req, res) => {
     // Set JWT
     res.setHeader('Set-Cookie', serialize('jwt', String(userJwt), { httpOnly: true, path: '/' }));
 
-    return res.status(201).send(user.toJSON());
+    return res.status(201).json(user.toJSON());
   }
   throw new NotFoundError();
 };

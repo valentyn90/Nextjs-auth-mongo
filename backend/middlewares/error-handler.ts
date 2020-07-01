@@ -9,9 +9,9 @@ export const errorHandler = (nextApiHandler: NextApiHandler) => async (
     await nextApiHandler(req, res);
   } catch (err) {
     if (err instanceof CustomError) {
-      return res.status(err.statusCode).send({ errors: err.serializeErrors() });
+      return res.status(err.statusCode).json({ errors: err.serializeErrors() });
     }
-    res.status(500).send({
+    res.status(500).json({
       errors: [{ message: err.message }],
     });
   }

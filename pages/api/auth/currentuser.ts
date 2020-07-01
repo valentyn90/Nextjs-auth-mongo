@@ -7,7 +7,7 @@ import { errorHandler } from 'backend/middlewares/error-handler';
 
 const routeHandler: NextApiHandler = (req, res) => {
   if (req.method === 'GET') {
-    return res.send({ currentUser: req.currentUser || null });
+    return res.json({ currentUser: req.currentUser || null });
   }
   throw new NotFoundError();
 };
