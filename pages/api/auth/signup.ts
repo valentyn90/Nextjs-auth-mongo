@@ -5,7 +5,7 @@ import { serialize } from 'cookie';
 import { Collection } from 'mongodb';
 import * as yup from 'yup';
 
-import { User, UsersCollection } from 'backend/models/user';
+import { User, UserDocument } from 'backend/models/user';
 import { BadRequestError } from 'backend/errors/bad-request-error';
 import { errorHandler } from 'backend/middlewares/error-handler';
 import { validateRequest } from 'backend/middlewares/validate-request';
@@ -26,7 +26,7 @@ const routeHandler: NextApiHandler = async (req, res) => {
       throw new Error('db not found');
     }
 
-    const usersCollection: Collection<UsersCollection> = req.db.collection('users');
+    const usersCollection: Collection<UserDocument> = req.db.collection('users');
     const existingUser = await usersCollection.findOne({ email });
     if (existingUser) {
       throw new BadRequestError('Email in use');
@@ -39,7 +39,7 @@ const routeHandler: NextApiHandler = async (req, res) => {
     if (!userFromBd) {
       throw new Error('Internal error, please try again later');
     }
-    const user = new User(userFromBd._id.toHexString(), userFromBd.email);
+    const user = new User(userFromBd);
     // Generate JWT
     if (!process.env.JWT_KEY) {
       throw new Error('JWT_KEY must be defined');

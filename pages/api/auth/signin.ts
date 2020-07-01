@@ -5,7 +5,7 @@ import { serialize } from 'cookie';
 import { Collection } from 'mongodb';
 import { compose } from 'lodash/fp';
 
-import { User, UsersCollection } from 'backend/models/user';
+import { User, UserDocument } from 'backend/models/user';
 import { BadRequestError } from 'backend/errors/bad-request-error';
 import { Password } from 'backend/services/password';
 import { NotFoundError } from 'backend/errors/not-found-error';
@@ -25,7 +25,7 @@ const routeHandler: NextApiHandler = async (req, res) => {
       throw new Error('db not found');
     }
 
-    const usersCollection: Collection<UsersCollection> = req.db.collection('users');
+    const usersCollection: Collection<UserDocument> = req.db.collection('users');
 
     const existingUser = await usersCollection.findOne({ email });
     if (!existingUser) {
@@ -35,7 +35,7 @@ const routeHandler: NextApiHandler = async (req, res) => {
     if (!passwordMatch) {
       throw new BadRequestError('Invalid credentials');
     }
-    const user = new User(existingUser._id.toHexString(), existingUser.email);
+    const user = new User(existingUser);
 
     // Generate JWT
     if (!process.env.JWT_KEY) {
