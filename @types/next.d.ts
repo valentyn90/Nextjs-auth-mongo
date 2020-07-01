@@ -1,6 +1,7 @@
 import 'next';
 import { Store } from 'redux';
 import { Db } from 'mongodb';
+import { CurrentUser } from 'backend/models/user';
 
 import { AppState } from '../redux/reducer';
 
@@ -9,7 +10,7 @@ declare module 'next' {
     store: Store<AppState>;
   }
   export interface NextApiRequest {
-    currentUser?: UserPayload;
+    currentUser?: CurrentUser;
     db?: Db;
   }
 }
