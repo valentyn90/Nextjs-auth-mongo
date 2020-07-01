@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse, NextApiHandler } from 'next';
 import jwt from 'jsonwebtoken';
-import { User } from 'backend/models/user';
+import { CurrentUser } from 'backend/models/user';
 
 export const currentUser = (nextApiHandler: NextApiHandler): NextApiHandler => async (
   req: NextApiRequest,
@@ -12,7 +12,7 @@ export const currentUser = (nextApiHandler: NextApiHandler): NextApiHandler => a
     }
 
     try {
-      const payload = jwt.verify(req.cookies.jwt, process.env.JWT_KEY) as User;
+      const payload = jwt.verify(req.cookies.jwt, process.env.JWT_KEY) as CurrentUser;
       req.currentUser = payload;
     } catch {
       res.json({ currentUser: null });

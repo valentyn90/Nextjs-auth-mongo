@@ -5,9 +5,8 @@ import { serialize } from 'cookie';
 import { Collection } from 'mongodb';
 import { compose } from 'lodash/fp';
 
-import { User, UserDocument } from 'backend/models/user';
+import { User, UserDoc } from 'backend/models/user';
 import { BadRequestError } from 'backend/errors/bad-request-error';
-import { Password } from 'backend/services/password';
 import { NotFoundError } from 'backend/errors/not-found-error';
 import { connectToDb } from 'backend/middlewares/connect-to-db';
 import { validateRequest } from 'backend/middlewares/validate-request';
@@ -20,22 +19,23 @@ const signinSchema = yup.object().shape({
 
 const routeHandler: NextApiHandler = async (req, res) => {
   if (req.method === 'POST') {
-    const { email, password } = req.body;
     if (!req.db) {
       throw new Error('db not found');
     }
+    const usersCollection: Collection<UserDoc> = req.db.collection('users');
 
-    const usersCollection: Collection<UserDocument> = req.db.collection('users');
+    const { email, password } = req.body;
 
     const existingUser = await usersCollection.findOne({ email });
     if (!existingUser) {
       throw new BadRequestError('Invalid credentials');
     }
-    const passwordMatch = await Password.compare(existingUser.password, password);
+
+    const user = new User(existingUser);
+    const passwordMatch = await user.comparePassword(password);
     if (!passwordMatch) {
       throw new BadRequestError('Invalid credentials');
     }
-    const user = new User(existingUser);
 
     // Generate JWT
     if (!process.env.JWT_KEY) {
@@ -46,7 +46,7 @@ const routeHandler: NextApiHandler = async (req, res) => {
     // Set JWT
     res.setHeader('Set-Cookie', serialize('jwt', String(userJwt), { httpOnly: true, path: '/' }));
 
-    return res.status(200).json(user.toJSON());
+    return res.json(user.toJSON());
   }
   throw new NotFoundError();
 };

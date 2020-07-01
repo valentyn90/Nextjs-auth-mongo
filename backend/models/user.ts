@@ -1,12 +1,18 @@
-import { ObjectID } from 'mongodb';
+import { scrypt, randomBytes } from 'crypto';
+import { promisify } from 'util';
+import { ObjectID, Collection } from 'mongodb';
 
-export interface UserDocument {
+const scryptAsync = promisify(scrypt);
+
+export interface UserDoc {
   _id: ObjectID;
   email: string;
   password: string;
 }
 
-export interface UserToJSON {
+export type UsersCollection = Collection<UserDoc>;
+
+export interface CurrentUser {
   id: string;
   email: string;
 }
@@ -16,15 +22,29 @@ export class User {
   public email: string;
   private password: string;
 
-  constructor(userDocument: UserDocument) {
-    const { _id, email, password } = userDocument;
+  constructor(userDoc: UserDoc) {
+    const { _id, email, password } = userDoc;
     this.id = _id.toHexString();
     this.email = email;
     this.password = password;
   }
 
-  toJSON(): UserToJSON {
+  toJSON(): CurrentUser {
     const { id, email } = this;
     return { id, email };
+  }
+
+  async comparePassword(suppliedPassword: string): Promise<boolean> {
+    const [hashedPassword, salt] = this.password.split('.');
+    const buf = (await scryptAsync(suppliedPassword, salt, 64)) as Buffer;
+
+    return buf.toString('hex') === hashedPassword;
+  }
+
+  static async toHash(password: string): Promise<string> {
+    const salt = randomBytes(8).toString('hex');
+    const buf = (await scryptAsync(password, salt, 64)) as Buffer;
+
+    return `${buf.toString('hex')}.${salt}`;
   }
 }
