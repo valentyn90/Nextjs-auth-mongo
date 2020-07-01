@@ -15,7 +15,7 @@ export const currentUser = (nextApiHandler: NextApiHandler): NextApiHandler => a
       const payload = jwt.verify(req.cookies.jwt, process.env.JWT_KEY) as User;
       req.currentUser = payload;
     } catch {
-      res.send({ currentUser: null });
+      res.json({ currentUser: null });
     }
   }
 
