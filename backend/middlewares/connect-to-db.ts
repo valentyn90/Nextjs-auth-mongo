@@ -32,6 +32,7 @@ export const connectToDb = (nextApiHandler: NextApiHandler): NextApiHandler => a
     throw new DatabaseConnectionError();
   }
 
+  req.client = client;
   req.db = client.db(process.env.DB_NAME);
 
   await nextApiHandler(req, res);
