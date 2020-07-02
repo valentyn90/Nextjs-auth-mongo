@@ -13,7 +13,6 @@ afterAll(async () => {
 it('fails when a email that does not exist is supplied', async () => {
   req = nodeMocks.createRequest({
     method: 'POST',
-    url: '/signip',
     body: {
       email: 'test@test.com',
       password: '1234',
@@ -27,7 +26,6 @@ it('fails when a email that does not exist is supplied', async () => {
 it('fails when an incorrect password is supplied', async () => {
   req = nodeMocks.createRequest({
     method: 'POST',
-    url: '/signup',
     body: {
       email: 'test@test.com',
       password: '1234',
@@ -39,7 +37,6 @@ it('fails when an incorrect password is supplied', async () => {
 
   req = nodeMocks.createRequest({
     method: 'POST',
-    url: '/signin',
     body: {
       email: 'test@test.com',
       password: 'asdf',
@@ -53,7 +50,6 @@ it('fails when an incorrect password is supplied', async () => {
 it('responds with a cookie when given valid credentials', async () => {
   req = nodeMocks.createRequest({
     method: 'POST',
-    url: '/signup',
     body: {
       email: 'test@test.com',
       password: '1234',
@@ -65,7 +61,6 @@ it('responds with a cookie when given valid credentials', async () => {
 
   req = nodeMocks.createRequest({
     method: 'POST',
-    url: '/signin',
     body: {
       email: 'test@test.com',
       password: '1234',

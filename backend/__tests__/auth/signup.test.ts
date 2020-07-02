@@ -12,7 +12,6 @@ afterAll(async () => {
 it('returns a 201 on successful signup', async () => {
   req = nodeMocks.createRequest({
     method: 'POST',
-    url: '/signup',
     body: {
       email: 'test@test.com',
       password: '1234',
@@ -26,7 +25,6 @@ it('returns a 201 on successful signup', async () => {
 it('returns a 400 with an invalid email', async () => {
   req = nodeMocks.createRequest({
     method: 'POST',
-    url: '/signup',
     body: {
       email: 'asdf',
       password: '1234',
@@ -40,7 +38,6 @@ it('returns a 400 with an invalid email', async () => {
 it('returns a 400 with an invalid password', async () => {
   req = nodeMocks.createRequest({
     method: 'POST',
-    url: '/signup',
     body: {
       email: 'test@test.com',
       password: '   ',
@@ -54,7 +51,6 @@ it('returns a 400 with an invalid password', async () => {
 it('returns a 400 with missing password', async () => {
   req = nodeMocks.createRequest({
     method: 'GET',
-    url: '/signup',
     body: {
       email: 'test@test.com',
     },
@@ -67,7 +63,6 @@ it('returns a 400 with missing password', async () => {
 it('returns a 400 with missing email', async () => {
   req = nodeMocks.createRequest({
     method: 'GET',
-    url: '/signup',
     body: {
       password: '1234',
     },
@@ -80,7 +75,6 @@ it('returns a 400 with missing email', async () => {
 it('disallows duplicate emails', async () => {
   req = nodeMocks.createRequest({
     method: 'POST',
-    url: '/signup',
     body: {
       email: 'test@test.com',
       password: '1234',
@@ -96,7 +90,6 @@ it('disallows duplicate emails', async () => {
 it('sets cookie after successful signup', async () => {
   req = nodeMocks.createRequest({
     method: 'POST',
-    url: '/signup',
     body: {
       email: 'test@test.com',
       password: '1234',
@@ -111,7 +104,6 @@ it('sets cookie after successful signup', async () => {
 it('should return 404 if the method is not POST', async () => {
   req = nodeMocks.createRequest({
     method: 'GET',
-    url: '/signup',
     body: {
       email: 'test@test.com',
       password: '1234',
