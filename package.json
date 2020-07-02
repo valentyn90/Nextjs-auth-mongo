@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "commit": "commit",
-    "lint": "eslint '*/**/*.{js,ts,tsx}'"
+    "lint": "eslint '*/**/*.{js,ts,tsx}'",
+    "test": "jest --watchAll --no-cache"
   },
   "dependencies": {
     "cookie": "^0.4.1",
@@ -24,6 +25,7 @@
     "@commitlint/config-conventional": "^9.0.1",
     "@commitlint/prompt-cli": "^9.0.1",
     "@types/cookie": "^0.4.0",
+    "@types/jest": "^26.0.3",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/lodash": "^4.14.157",
     "@types/mongodb": "^3.5.25",
@@ -38,7 +40,11 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.2",
     "husky": "^4.2.5",
+    "jest": "^26.1.0",
+    "mongodb-memory-server": "^6.6.1",
+    "node-mocks-http": "^1.8.1",
     "prettier": "^2.0.5",
+    "ts-jest": "^26.1.1",
     "typescript": "^3.9.5"
   },
   "husky": {
