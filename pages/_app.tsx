@@ -4,6 +4,7 @@ import { NextPage } from 'next';
 
 import { theme } from 'frontend/styled/theme';
 import { GlobalStyle } from 'frontend/styled/global-style';
+import { wrapper } from 'frontend/redux/store';
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
   return (
@@ -14,4 +15,4 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
   );
 };
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);
