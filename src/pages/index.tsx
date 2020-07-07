@@ -7,9 +7,8 @@ const HomePage: NextPage = () => {
     <Fragment>
       <Head>
         <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1>HomePage</h1>
+      <h1>Home Page</h1>
     </Fragment>
   );
 };

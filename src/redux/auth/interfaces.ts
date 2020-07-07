@@ -10,12 +10,12 @@ export interface SignInInput {
   password: string;
 }
 
-export interface Viewer {
+export type Viewer = {
   id: string;
   email: string;
-}
+} | null;
 
 export interface Auth {
-  viewer: Viewer | null;
+  viewer: Viewer;
   errors: SerializedError[];
 }

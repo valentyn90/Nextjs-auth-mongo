@@ -1,17 +1,26 @@
 import React, { useEffect } from 'react';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import { NextPage } from 'next';
+import { useSelector } from 'react-redux';
+import { AppState } from 'redux/root-reducer';
 
 export const logout = (): void => {
-  console.log('signout');
   window.localStorage.setItem('signout', JSON.stringify(Date.now()));
 };
 
 export const withAuthSync = (Component: NextPage): NextPage => {
   const Wrapper: NextPage = (props) => {
+    const router = useRouter();
+    const { viewer } = useSelector((state: AppState) => state.auth);
+
+    useEffect(() => {
+      if (!viewer) {
+        router.replace('/auth/signin');
+      }
+    }, [viewer]);
+
     const syncsignout = (event: StorageEvent): void => {
       if (event.key === 'signout') {
-        console.log('signout');
         Router.push('/auth/signin');
       }
     };
@@ -24,7 +33,7 @@ export const withAuthSync = (Component: NextPage): NextPage => {
       };
     }, []);
 
-    return <Component {...props} />;
+    return viewer ? <Component {...props} /> : <h1>Loading...</h1>;
   };
 
   return Wrapper;
