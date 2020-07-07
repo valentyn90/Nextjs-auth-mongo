@@ -11,6 +11,7 @@ import { connectToDb } from 'backend/middlewares/connect-to-db';
 import { validateRequest } from 'backend/middlewares/validate-request';
 import { errorHandler } from 'backend/middlewares/error-handler';
 import { signInSchema } from 'shared/validation';
+import { cookieSerializeOptions } from 'backend/constants';
 
 const routeHandler: NextApiHandler = async (req, res) => {
   if (req.method === 'POST') {
@@ -39,15 +40,7 @@ const routeHandler: NextApiHandler = async (req, res) => {
     const userJwt = jwt.sign(user.toJSON(), process.env.JWT_KEY);
 
     // Set JWT
-    res.setHeader(
-      'Set-Cookie',
-      serialize('jwt', String(userJwt), {
-        httpOnly: true,
-        maxAge: 1000 * 60 * 60,
-        path: '/',
-        sameSite: 'lax',
-      }),
-    );
+    res.setHeader('Set-Cookie', serialize('jwt', String(userJwt), cookieSerializeOptions));
 
     return res.json(user.toJSON());
   }

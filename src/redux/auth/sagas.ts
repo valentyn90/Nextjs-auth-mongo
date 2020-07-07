@@ -36,7 +36,7 @@ function* getViewer() {
       yield put(getViewerSuccess(data));
     }
   } catch (error) {
-    yield put(authFailure(error));
+    yield put(authFailure((error.response as AxiosResponse<ErrorResponse>).data));
   }
 }
 
@@ -51,7 +51,7 @@ function* signIn({ signInInput }: SignInStart) {
       yield put(signInSuccess(data));
     }
   } catch (error) {
-    yield put(authFailure(error));
+    yield put(authFailure((error.response as AxiosResponse<ErrorResponse>).data));
   }
 }
 
@@ -67,7 +67,7 @@ function* signOut() {
       yield call(logout);
     }
   } catch (error) {
-    yield put(authFailure(error));
+    yield put(authFailure((error.response as AxiosResponse<ErrorResponse>).data));
   }
 }
 
