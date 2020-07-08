@@ -2,10 +2,9 @@ import { takeLatest, call, put, all } from 'redux-saga/effects';
 import axios, { AxiosResponse } from 'axios';
 import { SagaIterator } from 'redux-saga';
 import { logout } from 'utils/auth';
-import { ErrorResponse } from 'shared/interfaces';
+import { ErrorResponse, Viewer } from 'shared/interfaces';
 import Router from 'next/router';
 import { AuthActionTypes, SignUpStart, SignInStart } from './action-types';
-import { Viewer } from './interfaces';
 import {
   signUpSuccess,
   authFailure,
@@ -28,7 +27,7 @@ function* signUp({ signUpInput }: SignUpStart) {
 
 function* getViewer() {
   try {
-    const { status, data }: AxiosResponse<{ viewer: Viewer }> = yield call(
+    const { status, data }: AxiosResponse<{ viewer: Viewer | null }> = yield call(
       axios.get,
       '/api/auth/viewer',
     );

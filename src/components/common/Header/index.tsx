@@ -20,17 +20,15 @@ const Header: React.FC = () => {
 
   return (
     <Styled.Header>
-      <Styled.Box>
+      <Styled.Nav>
         <Link href="/">
           <a>HOME</a>
         </Link>
         <Styled.ViewerInfo active={!!viewer}>
-          {viewer ? viewer.email : 'You are not signed in'}
+          {viewer ? viewer.firstName : 'You are not signed in'}
         </Styled.ViewerInfo>
-      </Styled.Box>
-      <Styled.Nav>
         {viewer ? (
-          <button onClick={onSignOutClick}>Sign Out</button>
+          <Styled.Input type="button" value="Sign Out" onClick={onSignOutClick} />
         ) : (
           <React.Fragment>
             <Link href="/auth/signin">
@@ -41,7 +39,7 @@ const Header: React.FC = () => {
             </Link>
           </React.Fragment>
         )}
-        <button onClick={onGetViewerClick}>Get Viewer</button>
+        <Styled.Input type="button" value="Get Viewer" onClick={onGetViewerClick} />
         <Link href="/profile">
           <a>Profile</a>
         </Link>

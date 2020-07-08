@@ -1,6 +1,4 @@
 import { NextApiHandler } from 'next';
-import jwt from 'jsonwebtoken';
-import { serialize } from 'cookie';
 import { Collection } from 'mongodb';
 import { compose } from 'lodash/fp';
 
@@ -11,7 +9,8 @@ import { connectToDb } from 'backend/middlewares/connect-to-db';
 import { validateRequest } from 'backend/middlewares/validate-request';
 import { errorHandler } from 'backend/middlewares/error-handler';
 import { signInSchema } from 'shared/validation';
-import { cookieSerializeOptions } from 'backend/constants';
+import { SignInInput } from 'shared/interfaces';
+import { generateJWT, setJWT } from 'backend/utils/jwt';
 
 const routeHandler: NextApiHandler = async (req, res) => {
   if (req.method === 'POST') {
@@ -20,7 +19,7 @@ const routeHandler: NextApiHandler = async (req, res) => {
     }
     const usersCollection: Collection<UserDoc> = req.db.collection('users');
 
-    const { email, password } = req.body;
+    const { email, password } = req.body as SignInInput;
 
     const existingUser = await usersCollection.findOne({ email });
     if (!existingUser) {
@@ -33,14 +32,8 @@ const routeHandler: NextApiHandler = async (req, res) => {
       throw new BadRequestError('Invalid credentials');
     }
 
-    // Generate JWT
-    if (!process.env.JWT_KEY) {
-      throw new Error('JWT_KEY must be defined');
-    }
-    const userJwt = jwt.sign(user.toJSON(), process.env.JWT_KEY);
-
-    // Set JWT
-    res.setHeader('Set-Cookie', serialize('jwt', String(userJwt), cookieSerializeOptions));
+    const userJwt = generateJWT(user);
+    setJWT(res, userJwt);
 
     return res.json(user.toJSON());
   }

@@ -4,9 +4,9 @@ import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
 
-import { signInStart } from 'redux/auth/actions';
-import { SignInInput } from 'redux/auth/interfaces';
+import { SignInInput } from 'shared/interfaces';
 import { signInSchema } from 'shared/validation';
+import { signInStart } from 'redux/auth/actions';
 
 const SignInPage: NextPage = () => {
   const dispatch = useDispatch();
@@ -16,6 +16,7 @@ const SignInPage: NextPage = () => {
   });
 
   const onSubmit = (signInInput: SignInInput) => {
+    console.log('onSubmit');
     dispatch(signInStart(signInInput));
   };
 
@@ -23,9 +24,9 @@ const SignInPage: NextPage = () => {
     <div>
       <Head>
         <title>Sign In</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>Sign In</h1>
+      <hr />
       <form onSubmit={handleSubmit(onSubmit)}>
         <input type="text" name="email" ref={register} />
         <p>{errors.email?.message}</p>

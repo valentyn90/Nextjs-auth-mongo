@@ -1,6 +1,5 @@
 import { Action } from 'redux';
-import { ErrorResponse } from 'shared/interfaces';
-import { SignUpInput, SignInInput, Viewer } from './interfaces';
+import { ErrorResponse, SignUpInput, SignInInput, Viewer } from 'shared/interfaces';
 
 export enum AuthActionTypes {
   signUpStart = 'signUpStart',
@@ -27,7 +26,7 @@ export interface GetViewerStart extends Action<string> {
 }
 export interface GetViewerSuccess extends Action<string> {
   type: AuthActionTypes.getViewerSuccess;
-  viewer: Viewer;
+  viewer: Viewer | null;
 }
 export interface SignInStart extends Action<string> {
   type: AuthActionTypes.signInStart;

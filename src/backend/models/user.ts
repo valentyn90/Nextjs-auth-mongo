@@ -1,37 +1,45 @@
 import { scrypt, randomBytes } from 'crypto';
 import { promisify } from 'util';
 import { ObjectID, Collection } from 'mongodb';
+import { Viewer } from 'shared/interfaces';
 
 const scryptAsync = promisify(scrypt);
 
 export interface UserDoc {
   _id: ObjectID;
+  firstName: string;
   email: string;
   password: string;
 }
 
-export type UsersCollection = Collection<UserDoc>;
-
-export interface Viewer {
+export interface TokenPayload {
   id: string;
-  email: string;
 }
+
+export type UsersCollection = Collection<UserDoc>;
 
 export class User {
   public id: string;
-  public email: string;
+  private firstName: string;
+  private email: string;
   private password: string;
 
   constructor(userDoc: UserDoc) {
-    const { _id, email, password } = userDoc;
+    const { _id, firstName, email, password } = userDoc;
     this.id = _id.toHexString();
+    this.firstName = firstName;
     this.email = email;
     this.password = password;
   }
 
   toJSON(): Viewer {
-    const { id, email } = this;
-    return { id, email };
+    const { firstName, id, email } = this;
+    return { id, firstName, email };
+  }
+
+  toJWT(): TokenPayload {
+    const { id } = this;
+    return { id };
   }
 
   async comparePassword(suppliedPassword: string): Promise<boolean> {

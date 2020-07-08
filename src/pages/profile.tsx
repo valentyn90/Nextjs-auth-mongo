@@ -14,8 +14,10 @@ const ProfilePage: NextPage = () => {
         <title>ProfilePage</title>
       </Head>
       <h1>Profile Page</h1>
+      <p>{`Your name: ${viewer?.firstName}`}</p>
+      <hr />
       <p>{`Your email: ${viewer?.email}`}</p>
-      <p>{`Your secret id: ${viewer?.id}`}</p>
+      <p>{`Your id: ${viewer?.id}`}</p>
     </Fragment>
   );
 };
