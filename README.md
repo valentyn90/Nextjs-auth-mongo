@@ -1,3 +1,6 @@
+## Online
+https://nextjs-auth-mongo.vercel.app
+
 This is a [Next.js](https://nextjs.org/) project with serverless [`api-routes`](https://nextjs.org/docs/api-routes/introduction), JWT, Redux, Styled-components and MongoDB.
 
 ## The project is not completed for now.
