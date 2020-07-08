@@ -7,10 +7,15 @@ import viewer from 'pages/api/auth/viewer';
 
 let req: nodeMocks.MockRequest<NextApiRequest>;
 
-it('responds with details about the current user', async () => {
+afterAll(async () => {
+  await req.client?.close();
+});
+
+it('responds with current user id', async () => {
   req = nodeMocks.createRequest({
     method: 'POST',
     body: {
+      firstName: 'John',
       email: 'test@test.com',
       password: '1234',
     },
@@ -18,8 +23,6 @@ it('responds with details about the current user', async () => {
   let res = nodeMocks.createResponse<NextApiResponse>();
   await signup(req, res);
   expect(res.statusCode).toEqual(201);
-
-  await req.client?.close();
 
   const cookieHeaderString = res.getHeader('Set-Cookie');
   req = nodeMocks.createRequest({
@@ -30,7 +33,7 @@ it('responds with details about the current user', async () => {
   res = nodeMocks.createResponse();
   await viewer(req, res);
   const data = res._getJSONData();
-  expect(data.viewer.email).toEqual('test@test.com');
+  expect(data.viewer.id).toBeDefined();
 });
 
 it('responds with null if not authenticated', async () => {
