@@ -1,4 +1,4 @@
-import { ErrorResponse } from 'shared/interfaces';
+import { ErrorResponse, SignUpInput, SignInInput, Viewer } from 'shared/interfaces';
 import {
   AuthActionTypes,
   SignUpStart,
@@ -11,7 +11,6 @@ import {
   GetViewerSuccess,
   AuthFailure,
 } from './action-types';
-import { SignUpInput, Viewer, SignInInput } from './interfaces';
 
 export const signUpStart = (signUpInput: SignUpInput): SignUpStart => ({
   type: AuthActionTypes.signUpStart,
@@ -39,7 +38,7 @@ export const signOutSuccess = (status: boolean): SignOutSuccess => ({
 export const getViewerStart = (): GetViewerStart => ({
   type: AuthActionTypes.getViewerStart,
 });
-export const getViewerSuccess = ({ viewer }: { viewer: Viewer }): GetViewerSuccess => ({
+export const getViewerSuccess = ({ viewer }: { viewer: Viewer | null }): GetViewerSuccess => ({
   type: AuthActionTypes.getViewerSuccess,
   viewer,
 });

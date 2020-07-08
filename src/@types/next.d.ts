@@ -1,7 +1,7 @@
 import 'next';
 import { Store } from 'redux';
 import { Db, MongoClient } from 'mongodb';
-import { Viewer } from 'backend/models/user';
+import { Viewer } from 'shared/interfaces';
 
 import { AppState } from '../redux/reducer';
 

@@ -1,7 +1,6 @@
 import { NextApiHandler } from 'next';
-import jwt from 'jsonwebtoken';
 import compose from 'lodash/fp/compose';
-import { serialize } from 'cookie';
+import * as yup from 'yup';
 
 import { User, UsersCollection } from 'backend/models/user';
 import { BadRequestError } from 'backend/errors/bad-request-error';
@@ -9,8 +8,15 @@ import { errorHandler } from 'backend/middlewares/error-handler';
 import { validateRequest } from 'backend/middlewares/validate-request';
 import { NotFoundError } from 'backend/errors/not-found-error';
 import { connectToDb } from 'backend/middlewares/connect-to-db';
-import { signUpSchema } from 'shared/validation';
-import { cookieSerializeOptions } from 'backend/constants';
+import { firstNameValidation, emailValidation, passwordValidation } from 'shared/validation';
+import { SignUpInput } from 'shared/interfaces';
+import { generateJWT, setJWT } from 'backend/utils/jwt';
+
+const validationSchema = yup.object().shape({
+  firstName: firstNameValidation,
+  email: emailValidation,
+  password: passwordValidation,
+});
 
 const routeHandler: NextApiHandler = async (req, res) => {
   if (req.method === 'POST') {
@@ -19,7 +25,7 @@ const routeHandler: NextApiHandler = async (req, res) => {
     }
     const usersCollection: UsersCollection = req.db.collection('users');
 
-    const { email, password } = req.body;
+    const { firstName, email, password } = req.body as SignUpInput;
 
     const existingUser = await usersCollection.findOne({ email });
     if (existingUser) {
@@ -28,25 +34,22 @@ const routeHandler: NextApiHandler = async (req, res) => {
 
     const hashedPassword = await User.toHash(password);
 
-    await usersCollection.insertOne({ email, password: hashedPassword }, { w: 'majority' });
-    const userFromBd = await usersCollection.findOne({ email });
-    if (!userFromBd) {
+    await usersCollection.insertOne(
+      { firstName, email, password: hashedPassword },
+      { w: 'majority' },
+    );
+    const userFromDb = await usersCollection.findOne({ email });
+    if (!userFromDb) {
       throw new Error('Internal error, please try again later');
     }
-    const user = new User(userFromBd);
+    const user = new User(userFromDb);
 
-    // Generate JWT
-    if (!process.env.JWT_KEY) {
-      throw new Error('JWT_KEY must be defined');
-    }
-    const userJwt = jwt.sign(user.toJSON(), process.env.JWT_KEY);
-
-    // Set JWT
-    res.setHeader('Set-Cookie', serialize('jwt', String(userJwt), cookieSerializeOptions));
+    const userJwt = generateJWT(user);
+    setJWT(res, userJwt);
 
     return res.status(201).json(user.toJSON());
   }
   throw new NotFoundError();
 };
 
-export default compose(errorHandler, validateRequest(signUpSchema), connectToDb)(routeHandler);
+export default compose(errorHandler, validateRequest(validationSchema), connectToDb)(routeHandler);
