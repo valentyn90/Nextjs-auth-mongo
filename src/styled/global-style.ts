@@ -1,14 +1,36 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
+import reset from 'styled-reset';
+
+const customButton = css`
+  background-color: ${({ theme }): string => theme.colors.three};
+  color: initial;
+  padding: 1rem 1.8rem;
+  text-align: center;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s;
+`;
 
 export const GlobalStyle = createGlobalStyle`
-  html,
-  body {
-    padding: 0;
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
-    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  ${reset}
+
+
+  a:link, a:visited {
+    ${customButton}
   }
-  * {
-    box-sizing: border-box;
+
+  a:hover, a:active {
+    background-color: ${({ theme }): string => theme.colors.two};
+  }
+
+  button {
+    ${customButton}
+    cursor: pointer;
+    border: none;
+  }
+
+  button:hover {
+    background-color: ${({ theme }): string => theme.colors.two};
   }
 `;

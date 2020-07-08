@@ -1,27 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
-import styled from 'styled-components';
 
 import { AppState } from 'redux/root-reducer';
 import { signOutStart, getViewerStart } from 'redux/auth/actions';
-
-const StyledHeader = styled.header`
-  padding: 0.5rem 1.8rem;
-  width: 100%;
-  display: flex;
-  background-color: #fff;
-`;
-
-const StyledNav = styled.nav`
-  flex: 5;
-  display: flex;
-  justify-content: space-around;
-`;
-
-const StyledAnchorHome = styled.a`
-  flex: 1;
-`;
+import * as Styled from './styles';
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -36,22 +19,34 @@ const Header: React.FC = () => {
   };
 
   return (
-    <StyledHeader>
-      <Link href="/" passHref>
-        <StyledAnchorHome>HOME</StyledAnchorHome>
-      </Link>
-      <span>{viewer ? viewer.id : 'You are not signed in'}</span>
-      <StyledNav>
+    <Styled.Header>
+      <Styled.Box>
+        <Link href="/">
+          <a>HOME</a>
+        </Link>
+        <Styled.ViewerInfo active={!!viewer}>
+          {viewer ? viewer.email : 'You are not signed in'}
+        </Styled.ViewerInfo>
+      </Styled.Box>
+      <Styled.Nav>
         {viewer ? (
           <button onClick={onSignOutClick}>Sign Out</button>
         ) : (
-          <Link href="/auth/signin">
-            <a>Sign In</a>
-          </Link>
+          <React.Fragment>
+            <Link href="/auth/signin">
+              <a>Sign In</a>
+            </Link>
+            <Link href="/auth/signup">
+              <a>Sign Up</a>
+            </Link>
+          </React.Fragment>
         )}
         <button onClick={onGetViewerClick}>Get Viewer</button>
-      </StyledNav>
-    </StyledHeader>
+        <Link href="/profile">
+          <a>Profile</a>
+        </Link>
+      </Styled.Nav>
+    </Styled.Header>
   );
 };
 

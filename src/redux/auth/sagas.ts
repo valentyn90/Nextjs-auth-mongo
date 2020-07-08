@@ -3,7 +3,9 @@ import axios, { AxiosResponse } from 'axios';
 import { SagaIterator } from 'redux-saga';
 import { logout } from 'utils/auth';
 import { ErrorResponse } from 'shared/interfaces';
+import Router from 'next/router';
 import { AuthActionTypes, SignUpStart, SignInStart } from './action-types';
+import { Viewer } from './interfaces';
 import {
   signUpSuccess,
   authFailure,
@@ -11,12 +13,10 @@ import {
   signInSuccess,
   signOutSuccess,
 } from './actions';
-import { Viewer } from './interfaces';
 
 function* signUp({ signUpInput }: SignUpStart) {
   try {
     const response: AxiosResponse<Viewer> = yield call(axios.post, '/api/auth/signup', signUpInput);
-    console.log(response);
     const { status, data } = response;
     if (status === 201) {
       yield put(signUpSuccess(data));
@@ -33,6 +33,9 @@ function* getViewer() {
       '/api/auth/viewer',
     );
     if (status === 200) {
+      if (!data.viewer) {
+        Router.replace('/auth/signin');
+      }
       yield put(getViewerSuccess(data));
     }
   } catch (error) {
