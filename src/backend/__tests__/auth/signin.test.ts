@@ -1,8 +1,8 @@
 import nodeMocks from 'node-mocks-http';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import signin from 'pages/api/auth/signin';
 import signup from 'pages/api/auth/signup';
+import signin from 'pages/api/auth/signin';
 
 let req: nodeMocks.MockRequest<NextApiRequest>;
 
@@ -27,6 +27,7 @@ it('fails when an incorrect password is supplied', async () => {
   req = nodeMocks.createRequest({
     method: 'POST',
     body: {
+      firstName: 'John',
       email: 'test@test.com',
       password: '1234',
     },
@@ -51,6 +52,7 @@ it('responds with a cookie when given valid credentials', async () => {
   req = nodeMocks.createRequest({
     method: 'POST',
     body: {
+      firstName: 'John',
       email: 'test@test.com',
       password: '1234',
     },

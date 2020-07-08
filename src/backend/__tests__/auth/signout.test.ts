@@ -10,6 +10,7 @@ it('clears the cookie after signing out', async () => {
   req = nodeMocks.createRequest({
     method: 'POST',
     body: {
+      firstName: 'John',
       email: 'test@test.com',
       password: '1234',
     },
