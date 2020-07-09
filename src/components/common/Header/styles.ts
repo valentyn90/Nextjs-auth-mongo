@@ -5,16 +5,11 @@ export const Header = styled.header`
   padding: 1rem 1.8rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background-color: #fff;
   background-color: ${({ theme }): string => theme.colors.five};
-`;
 
-export const Nav = styled.nav`
-  width: 100%;
-  padding: 0 1.8rem;
-  display: flex;
-  justify-content: space-between;
+  & > * {
+    margin-right: 1rem;
+  }
 `;
 
 export const Input = styled.input`

@@ -12,7 +12,7 @@ import { AppState } from 'redux/root-reducer';
 
 const SignIn: React.FC = () => {
   const dispatch = useDispatch();
-  const { signInErrors } = useSelector((state: AppState) => state.auth);
+  const { signInErrors, loading } = useSelector((state: AppState) => state.auth);
 
   const { register, handleSubmit, errors } = useForm<SignInInput>({
     resolver: yupResolver(signInSchema),
@@ -49,7 +49,7 @@ const SignIn: React.FC = () => {
         <ErrorPara>{errors.password?.message}</ErrorPara>
       </InputBox>
 
-      <button type="submit">Submit</button>
+      <button type="submit">{loading ? 'Loading...' : 'Submit'}</button>
     </form>
   );
 };

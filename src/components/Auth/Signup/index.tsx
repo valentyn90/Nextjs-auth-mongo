@@ -31,7 +31,7 @@ const validationSchema = yup.object().shape({
 
 const SignUp: React.FC = () => {
   const dispatch = useDispatch();
-  const { signUpErrors } = useSelector((state: AppState) => state.auth);
+  const { signUpErrors, loading } = useSelector((state: AppState) => state.auth);
 
   const { register, handleSubmit, errors } = useForm<SignUpForm>({
     resolver: yupResolver(validationSchema),
@@ -95,7 +95,7 @@ const SignUp: React.FC = () => {
         <ErrorPara>{errors.password2?.message}</ErrorPara>
       </InputBox>
 
-      <button type="submit">Submit</button>
+      <button type="submit">{loading ? 'Loading...' : 'Submit'}</button>
     </form>
   );
 };
