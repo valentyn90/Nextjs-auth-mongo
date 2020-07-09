@@ -23,7 +23,6 @@ export const authReducer = (state: Auth = initialState, action: AuthAction): Aut
       return {
         ...state,
         getViewerErrors: [],
-        loading: true,
       };
 
     case AuthActionTypes.signInStart:
@@ -51,7 +50,6 @@ export const authReducer = (state: Auth = initialState, action: AuthAction): Aut
       return {
         ...state,
         viewer: action.viewer,
-        loading: false,
       };
 
     case AuthActionTypes.signInSuccess:
