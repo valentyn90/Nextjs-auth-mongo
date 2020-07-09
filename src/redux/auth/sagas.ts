@@ -1,16 +1,17 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects';
 import axios, { AxiosResponse } from 'axios';
-import { SagaIterator } from 'redux-saga';
-import { logout } from 'utils/auth';
+import { logout } from 'utils/withAuthSync';
 import { ErrorResponse, Viewer } from 'shared/interfaces';
-import Router from 'next/router';
 import { AuthActionTypes, SignUpStart, SignInStart } from './action-types';
 import {
   signUpSuccess,
-  authFailure,
   getViewerSuccess,
   signInSuccess,
   signOutSuccess,
+  signUpFailure,
+  getVieweFailure,
+  signInFailure,
+  signOutFailure,
 } from './actions';
 
 function* signUp({ signUpInput }: SignUpStart) {
@@ -21,7 +22,7 @@ function* signUp({ signUpInput }: SignUpStart) {
       yield put(signUpSuccess(data));
     }
   } catch (error) {
-    yield put(authFailure((error.response as AxiosResponse<ErrorResponse>).data));
+    yield put(signUpFailure((error.response as AxiosResponse<ErrorResponse>).data));
   }
 }
 
@@ -32,13 +33,10 @@ function* getViewer() {
       '/api/auth/viewer',
     );
     if (status === 200) {
-      if (!data.viewer) {
-        Router.replace('/auth/signin');
-      }
       yield put(getViewerSuccess(data));
     }
   } catch (error) {
-    yield put(authFailure((error.response as AxiosResponse<ErrorResponse>).data));
+    yield put(getVieweFailure((error.response as AxiosResponse<ErrorResponse>).data));
   }
 }
 
@@ -53,7 +51,7 @@ function* signIn({ signInInput }: SignInStart) {
       yield put(signInSuccess(data));
     }
   } catch (error) {
-    yield put(authFailure((error.response as AxiosResponse<ErrorResponse>).data));
+    yield put(signInFailure((error.response as AxiosResponse<ErrorResponse>).data));
   }
 }
 
@@ -69,7 +67,7 @@ function* signOut() {
       yield call(logout);
     }
   } catch (error) {
-    yield put(authFailure((error.response as AxiosResponse<ErrorResponse>).data));
+    yield put(signOutFailure((error.response as AxiosResponse<ErrorResponse>).data));
   }
 }
 
@@ -86,7 +84,7 @@ function* onSignOutStart() {
   yield takeLatest(AuthActionTypes.signOutStart, signOut);
 }
 
-export function* authSagas(): SagaIterator<void> {
+export function* authSagas(): Generator {
   yield all([
     call(onSignUpStart),
     call(onGetViewerStart),

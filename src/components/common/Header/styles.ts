@@ -22,12 +22,11 @@ export const Input = styled.input`
   border: none;
 `;
 
-export const ViewerInfo = styled.p<{ active: boolean }>`
+export const ViewerInfo = styled.p`
   padding: 1rem 1.8rem;
   font-weight: bold;
   color: ${({ theme }): string => theme.colors.light};
-  background-color: ${({ theme, active }): string =>
-    active ? theme.colors.four : theme.colors.one};
+  background-color: ${({ theme }): string => theme.colors.one};
   border: 2px dotted ${({ theme }): string => theme.colors.light};
   border-radius: 4px;
 `;
