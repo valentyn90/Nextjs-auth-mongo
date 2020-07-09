@@ -16,27 +16,25 @@ const Header: React.FC = () => {
 
   return (
     <Styled.Header>
-      <Styled.Nav>
-        <Link href="/">
-          <a>HOME</a>
+      <Link href="/">
+        <a>HOME</a>
+      </Link>
+      {viewer ? (
+        <Link href="/profile">
+          <a>Profile</a>
         </Link>
-        {viewer ? (
-          <Link href="/profile">
-            <a>Profile</a>
-          </Link>
-        ) : (
-          <Link href="/auth/signin">
-            <a>Sign In</a>
-          </Link>
-        )}
-        {viewer ? (
-          <Styled.Input type="button" value="Sign Out" onClick={onSignOutClick} />
-        ) : (
-          <Link href="/auth/signup">
-            <a>Sign Up</a>
-          </Link>
-        )}
-      </Styled.Nav>
+      ) : (
+        <Link href="/auth/signin">
+          <a>Sign In</a>
+        </Link>
+      )}
+      {viewer ? (
+        <button onClick={onSignOutClick}>Sign Out</button>
+      ) : (
+        <Link href="/auth/signup">
+          <a>Sign Up</a>
+        </Link>
+      )}
     </Styled.Header>
   );
 };

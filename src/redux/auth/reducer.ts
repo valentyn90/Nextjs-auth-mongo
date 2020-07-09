@@ -72,24 +72,28 @@ export const authReducer = (state: Auth = initialState, action: AuthAction): Aut
       return {
         ...state,
         signUpErrors: action.errorResponse.errors || [],
+        loading: false,
       };
 
     case AuthActionTypes.getViewerFailure:
       return {
         ...state,
         getViewerErrors: action.errorResponse.errors || [],
+        loading: false,
       };
 
     case AuthActionTypes.signInFailure:
       return {
         ...state,
         signInErrors: action.errorResponse.errors || [],
+        loading: false,
       };
 
     case AuthActionTypes.signOutFailure:
       return {
         ...state,
         signOutErrors: action.errorResponse.errors || [],
+        loading: false,
       };
 
     default:
