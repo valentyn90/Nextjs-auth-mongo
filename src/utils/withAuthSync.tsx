@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import Router, { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { NextPage } from 'next';
 import { useSelector } from 'react-redux';
 import { AppState } from 'redux/root-reducer';
@@ -14,14 +14,14 @@ export const withAuthSync = (Component: NextPage): NextPage => {
     const { viewer } = useSelector((state: AppState) => state.auth);
 
     useEffect(() => {
-      if (!viewer) {
+      if (viewer === null) {
         router.replace('/auth/signin');
       }
     }, [viewer]);
 
     const syncsignout = (event: StorageEvent): void => {
       if (event.key === 'signout') {
-        Router.push('/auth/signin');
+        router.push('/auth/signin');
       }
     };
     useEffect(() => {

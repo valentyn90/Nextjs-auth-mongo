@@ -1,23 +1,17 @@
 import { Fragment } from 'react';
 import Head from 'next/head';
 import { NextPage } from 'next';
-import { withAuthSync } from 'utils/auth';
-import { useSelector } from 'react-redux';
 
-import { AppState } from 'redux/root-reducer';
+import { withAuthSync } from 'utils/withAuthSync';
+import Profile from 'components/Profile';
 
 const ProfilePage: NextPage = () => {
-  const { viewer } = useSelector((state: AppState) => state.auth);
   return (
     <Fragment>
       <Head>
         <title>ProfilePage</title>
       </Head>
-      <h1>Profile Page</h1>
-      <p>{`Your name: ${viewer?.firstName}`}</p>
-      <hr />
-      <p>{`Your email: ${viewer?.email}`}</p>
-      <p>{`Your id: ${viewer?.id}`}</p>
+      <Profile />
     </Fragment>
   );
 };

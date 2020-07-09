@@ -10,7 +10,6 @@ export const customButton = css`
   text-align: center;
   border-radius: 4px;
   text-decoration: none;
-  display: inline-block;
   transition: all 0.2s;
   cursor: pointer;
 
