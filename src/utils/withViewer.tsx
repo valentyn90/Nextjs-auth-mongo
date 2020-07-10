@@ -13,7 +13,7 @@ export const withViewer = (Component: NextPage): NextPage => {
       if (viewer) {
         router.replace('/');
       }
-    }, [viewer]);
+    }, [router, viewer]);
 
     return <Component {...props} />;
   };
