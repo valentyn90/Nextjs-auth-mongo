@@ -13,12 +13,11 @@ import { getViewerStart } from 'redux/auth/actions';
 import { AppState } from 'redux/root-reducer';
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
+  const dispatch = useDispatch();
   const { viewer } = useSelector((state: AppState) => state.auth);
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
-    if (!viewer) {
+    if (viewer === undefined) {
       dispatch(getViewerStart());
     }
   }, [dispatch, getViewerStart, viewer]);

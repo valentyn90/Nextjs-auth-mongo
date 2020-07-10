@@ -19,6 +19,7 @@ export const injectViewer = (nextApiHandler: NextApiHandler): NextApiHandler => 
 
     try {
       const { id } = jwt.verify(req.cookies.jwt, process.env.JWT_KEY) as TokenPayload;
+
       const userFromDb = await usersCollection.findOne({ _id: new ObjectId(id) });
       if (!userFromDb) {
         throw new Error('user not found');
@@ -27,7 +28,7 @@ export const injectViewer = (nextApiHandler: NextApiHandler): NextApiHandler => 
 
       req.viewer = user.toJSON();
     } catch {
-      res.json({ viewer: null });
+      return res.json({ viewer: null });
     }
   }
 
