@@ -20,7 +20,7 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
     if (viewer === undefined) {
       dispatch(getViewerStart());
     }
-  }, [dispatch, getViewerStart, viewer]);
+  }, [dispatch, viewer]);
 
   return (
     <ThemeProvider theme={theme}>
