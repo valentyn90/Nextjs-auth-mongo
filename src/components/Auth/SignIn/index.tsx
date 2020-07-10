@@ -19,7 +19,6 @@ const SignIn: React.FC = () => {
   });
 
   const onSubmit = (signInInput: SignInInput) => {
-    console.log('onSubmit');
     dispatch(signInStart(signInInput));
   };
 

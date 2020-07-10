@@ -29,10 +29,8 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode
-
 ### VisualStudioCode ###
+.vscode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -43,5 +41,3 @@ yarn-error.log*
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
-
-# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode
