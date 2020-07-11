@@ -1,8 +1,7 @@
 import { Fragment } from 'react';
 import Head from 'next/head';
 import { NextPage } from 'next';
-
-import { PageTitle } from 'styled/styles';
+import PageTitle from 'components/common/PageTitle';
 
 const HomePage: NextPage = () => {
   return (

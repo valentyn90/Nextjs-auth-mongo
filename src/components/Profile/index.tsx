@@ -1,26 +1,22 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useSelector } from 'react-redux';
 
-import { PageTitle } from 'styled/styles';
 import { AppState } from 'redux/root-reducer';
-import * as Styled from './styles';
+import PageTitle from 'components/common/PageTitle';
+import ProfileItem from './ProfileItem';
 
 const Profile: React.FC = () => {
   const { viewer } = useSelector((state: AppState) => state.auth);
+
+  if (!viewer) return null;
+
   return (
-    <div>
-      <PageTitle>Profile Page</PageTitle>
-      <p>
-        Your name: <Styled.Span>{viewer?.firstName}</Styled.Span>
-      </p>
-      <hr />
-      <p>
-        Your email: <Styled.Span>{viewer?.email}</Styled.Span>
-      </p>
-      <p>
-        Your id: <Styled.Span>{viewer?.id}</Styled.Span>
-      </p>
-    </div>
+    <Fragment>
+      <PageTitle>Home Page</PageTitle>
+      <ProfileItem text="Your name:" data={viewer.firstName} />
+      <ProfileItem text="Your email:" data={viewer.email} />
+      <ProfileItem text="Your id:" data={viewer.id} />
+    </Fragment>
   );
 };
 

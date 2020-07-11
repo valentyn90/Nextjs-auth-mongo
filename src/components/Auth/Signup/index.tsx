@@ -7,10 +7,10 @@ import * as yup from 'yup';
 import { signUpStart } from 'redux/auth/actions';
 import { SignUpInput } from 'shared/interfaces';
 import { firstNameValidation, emailValidation, passwordValidation } from 'shared/validation';
-import { PageTitle, TextInput, InputBox, ErrorPara } from 'styled/styles';
 import ResponseErrors from 'components/common/ResponseErrors';
 
 import { AppState } from 'redux/root-reducer';
+import PageTitle from 'components/common/PageTitle';
 
 interface SignUpForm extends SignUpInput {
   password2: string;
@@ -45,10 +45,10 @@ const SignUp: React.FC = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <PageTitle>Sign Up</PageTitle>
       <ResponseErrors errors={signUpErrors} />
-      <InputBox>
+      <div>
         <label htmlFor="firstName">
           First Name
-          <TextInput
+          <input
             type="text"
             name="firstName"
             id="firstName"
@@ -56,21 +56,21 @@ const SignUp: React.FC = () => {
             ref={register}
           />
         </label>
-        <ErrorPara>{errors.firstName?.message}</ErrorPara>
-      </InputBox>
+        <p>{errors.firstName?.message}</p>
+      </div>
 
-      <InputBox>
+      <div>
         <label htmlFor="email">
           Email
-          <TextInput type="email" name="email" id="email" autoComplete="email" ref={register} />
+          <input type="email" name="email" id="email" autoComplete="email" ref={register} />
         </label>
-        <ErrorPara>{errors.email?.message}</ErrorPara>
-      </InputBox>
+        <p>{errors.email?.message}</p>
+      </div>
 
-      <InputBox>
+      <div>
         <label htmlFor="password">
           Password
-          <TextInput
+          <input
             type="password"
             name="password"
             id="password"
@@ -78,13 +78,13 @@ const SignUp: React.FC = () => {
             ref={register}
           />
         </label>
-        <ErrorPara>{errors.password?.message}</ErrorPara>
-      </InputBox>
+        <p>{errors.password?.message}</p>
+      </div>
 
-      <InputBox>
+      <div>
         <label htmlFor="password2">
           Repeat password
-          <TextInput
+          <input
             type="password"
             name="password2"
             id="password2"
@@ -92,8 +92,8 @@ const SignUp: React.FC = () => {
             ref={register}
           />
         </label>
-        <ErrorPara>{errors.password2?.message}</ErrorPara>
-      </InputBox>
+        <p>{errors.password2?.message}</p>
+      </div>
 
       <button type="submit">{loading ? 'Loading...' : 'Submit'}</button>
     </form>

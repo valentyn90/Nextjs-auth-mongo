@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { AppState } from 'redux/root-reducer';
 import { signOutStart } from 'redux/auth/actions';
-import * as Styled from './styles';
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -15,7 +14,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <Styled.Header>
+    <header>
       <Link href="/">
         <a>HOME</a>
       </Link>
@@ -35,7 +34,7 @@ const Header: React.FC = () => {
           <a>Sign Up</a>
         </Link>
       )}
-    </Styled.Header>
+    </header>
   );
 };
 

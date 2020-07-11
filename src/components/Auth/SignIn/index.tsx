@@ -6,9 +6,9 @@ import { yupResolver } from '@hookform/resolvers';
 import { SignInInput } from 'shared/interfaces';
 import { signInSchema } from 'shared/validation';
 import { signInStart } from 'redux/auth/actions';
-import { PageTitle, TextInput, InputBox, ErrorPara } from 'styled/styles';
 import ResponseErrors from 'components/common/ResponseErrors';
 import { AppState } from 'redux/root-reducer';
+import PageTitle from 'components/common/PageTitle';
 
 const SignIn: React.FC = () => {
   const dispatch = useDispatch();
@@ -26,18 +26,18 @@ const SignIn: React.FC = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <PageTitle>Sign In</PageTitle>
       <ResponseErrors errors={signInErrors} />
-      <InputBox>
+      <div>
         <label htmlFor="email">
           Email
-          <TextInput type="email" name="email" id="email" autoComplete="email" ref={register} />
+          <input type="email" name="email" id="email" autoComplete="email" ref={register} />
         </label>
-        <ErrorPara>{errors.email?.message}</ErrorPara>
-      </InputBox>
+        <p>{errors.email?.message}</p>
+      </div>
 
-      <InputBox>
+      <div>
         <label htmlFor="password">
           Password
-          <TextInput
+          <input
             type="password"
             name="password"
             id="password"
@@ -45,8 +45,8 @@ const SignIn: React.FC = () => {
             ref={register}
           />
         </label>
-        <ErrorPara>{errors.password?.message}</ErrorPara>
-      </InputBox>
+        <p>{errors.password?.message}</p>
+      </div>
 
       <button type="submit">{loading ? 'Loading...' : 'Submit'}</button>
     </form>

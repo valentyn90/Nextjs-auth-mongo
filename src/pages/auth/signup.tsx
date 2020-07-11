@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { NextPage } from 'next';
 
 import SignUp from 'components/Auth/Signup';
-import { withViewer } from 'utils/withViewer';
+import { withViewer } from 'utils/withViewerRedirect';
 
 const SignUpPage: NextPage = () => {
   return (
