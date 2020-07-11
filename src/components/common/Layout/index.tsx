@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Box } from '@material-ui/core';
 import Header from '../Header';
 
 interface Props {
@@ -8,10 +9,10 @@ interface Props {
 
 const Layout: React.FC<Props> = ({ children }: Props) => {
   return (
-    <React.Fragment>
+    <Box mt={8} py={2} px={3}>
       <Header />
       {children}
-    </React.Fragment>
+    </Box>
   );
 };
 

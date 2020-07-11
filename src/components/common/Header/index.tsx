@@ -1,9 +1,18 @@
 import React from 'react';
-import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
+import { Button, AppBar, Toolbar } from '@material-ui/core';
+import EcoOutlinedIcon from '@material-ui/icons/EcoOutlined';
+import { makeStyles } from '@material-ui/styles';
 
 import { AppState } from 'redux/root-reducer';
 import { signOutStart } from 'redux/auth/actions';
+import HeaderLink from './HeaderLink';
+
+const useStyles = makeStyles(() => ({
+  logoStyles: {
+    marginLeft: 'auto',
+  },
+}));
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -13,28 +22,35 @@ const Header: React.FC = () => {
     dispatch(signOutStart());
   };
 
+  const classes = useStyles();
+
   return (
-    <header>
-      <Link href="/">
-        <a>HOME</a>
-      </Link>
-      {viewer ? (
-        <Link href="/profile">
-          <a>Profile</a>
-        </Link>
-      ) : (
-        <Link href="/auth/signin">
-          <a>Sign In</a>
-        </Link>
-      )}
-      {viewer ? (
-        <button onClick={onSignOutClick}>Sign Out</button>
-      ) : (
-        <Link href="/auth/signup">
-          <a>Sign Up</a>
-        </Link>
-      )}
-    </header>
+    <AppBar position="fixed">
+      <Toolbar>
+        <HeaderLink href="/" variant="contained" color="secondary">
+          HOME
+        </HeaderLink>
+        {viewer ? (
+          <HeaderLink href="/profile" color="inherit">
+            Profile
+          </HeaderLink>
+        ) : (
+          <HeaderLink href="/auth/signin" color="inherit">
+            Sign In
+          </HeaderLink>
+        )}
+        {viewer ? (
+          <Button onClick={onSignOutClick} color="inherit">
+            Sign Out
+          </Button>
+        ) : (
+          <HeaderLink href="/auth/signup" color="inherit">
+            Sign Up
+          </HeaderLink>
+        )}
+        <EcoOutlinedIcon className={classes.logoStyles} />
+      </Toolbar>
+    </AppBar>
   );
 };
 
