@@ -2,14 +2,14 @@ import Head from 'next/head';
 import { Fragment } from 'react';
 import { NextPage } from 'next';
 
-import SignUp from 'components/Auth/Signup';
-import { withViewer } from 'utils/withViewer';
+import SignUp from 'components/Auth/SignUp';
+import { withViewer } from 'utils/withViewerRedirect';
 
 const SignUpPage: NextPage = () => {
   return (
     <Fragment>
       <Head>
-        <title>Sign Up</title>
+        <title>My App | Sign Up</title>
       </Head>
       <SignUp />
     </Fragment>

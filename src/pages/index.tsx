@@ -1,14 +1,13 @@
 import { Fragment } from 'react';
 import Head from 'next/head';
 import { NextPage } from 'next';
-
-import { PageTitle } from 'styled/styles';
+import PageTitle from 'components/common/PageTitle';
 
 const HomePage: NextPage = () => {
   return (
     <Fragment>
       <Head>
-        <title>Create Next App</title>
+        <title>My App | Home</title>
       </Head>
       <PageTitle>Home Page</PageTitle>
     </Fragment>

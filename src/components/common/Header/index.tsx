@@ -1,10 +1,18 @@
-import React from 'react';
-import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
+import { Button, AppBar, Toolbar } from '@material-ui/core';
+import EcoOutlinedIcon from '@material-ui/icons/EcoOutlined';
+import { makeStyles } from '@material-ui/styles';
+import HomeIcon from '@material-ui/icons/Home';
 
 import { AppState } from 'redux/root-reducer';
 import { signOutStart } from 'redux/auth/actions';
-import * as Styled from './styles';
+import HeaderButton from './HeaderButton';
+
+const useStyles = makeStyles(() => ({
+  logoStyles: {
+    marginLeft: 'auto',
+  },
+}));
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -14,28 +22,41 @@ const Header: React.FC = () => {
     dispatch(signOutStart());
   };
 
+  const classes = useStyles();
+
   return (
-    <Styled.Header>
-      <Link href="/">
-        <a>HOME</a>
-      </Link>
-      {viewer ? (
-        <Link href="/profile">
-          <a>Profile</a>
-        </Link>
-      ) : (
-        <Link href="/auth/signin">
-          <a>Sign In</a>
-        </Link>
-      )}
-      {viewer ? (
-        <button onClick={onSignOutClick}>Sign Out</button>
-      ) : (
-        <Link href="/auth/signup">
-          <a>Sign Up</a>
-        </Link>
-      )}
-    </Styled.Header>
+    <AppBar position="fixed">
+      <Toolbar>
+        <HeaderButton
+          component="a"
+          href="/"
+          variant="contained"
+          color="secondary"
+          startIcon={<HomeIcon />}
+        >
+          HOME
+        </HeaderButton>
+        {viewer ? (
+          <HeaderButton component="a" href="/profile" color="secondary">
+            Profile
+          </HeaderButton>
+        ) : (
+          <HeaderButton component="a" href="/auth/signin" color="secondary">
+            Sign In
+          </HeaderButton>
+        )}
+        {viewer ? (
+          <Button onClick={onSignOutClick} color="secondary">
+            Sign Out
+          </Button>
+        ) : (
+          <HeaderButton component="a" href="/auth/signup" color="secondary">
+            Sign Up
+          </HeaderButton>
+        )}
+        <EcoOutlinedIcon className={classes.logoStyles} color="secondary" />
+      </Toolbar>
+    </AppBar>
   );
 };
 
