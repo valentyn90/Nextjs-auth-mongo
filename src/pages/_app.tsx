@@ -35,6 +35,7 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
       <Head>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <link rel="icon" href="/favicon.ico" />
+        <title>My App</title>
       </Head>
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}

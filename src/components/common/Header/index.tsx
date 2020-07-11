@@ -1,12 +1,12 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, AppBar, Toolbar } from '@material-ui/core';
 import EcoOutlinedIcon from '@material-ui/icons/EcoOutlined';
 import { makeStyles } from '@material-ui/styles';
+import HomeIcon from '@material-ui/icons/Home';
 
 import { AppState } from 'redux/root-reducer';
 import { signOutStart } from 'redux/auth/actions';
-import HeaderLink from './HeaderLink';
+import HeaderButton from './HeaderButton';
 
 const useStyles = makeStyles(() => ({
   logoStyles: {
@@ -27,28 +27,34 @@ const Header: React.FC = () => {
   return (
     <AppBar position="fixed">
       <Toolbar>
-        <HeaderLink href="/" variant="contained" color="secondary">
+        <HeaderButton
+          component="a"
+          href="/"
+          variant="contained"
+          color="secondary"
+          startIcon={<HomeIcon />}
+        >
           HOME
-        </HeaderLink>
+        </HeaderButton>
         {viewer ? (
-          <HeaderLink href="/profile" color="inherit">
+          <HeaderButton component="a" href="/profile" color="secondary">
             Profile
-          </HeaderLink>
+          </HeaderButton>
         ) : (
-          <HeaderLink href="/auth/signin" color="inherit">
+          <HeaderButton component="a" href="/auth/signin" color="secondary">
             Sign In
-          </HeaderLink>
+          </HeaderButton>
         )}
         {viewer ? (
-          <Button onClick={onSignOutClick} color="inherit">
+          <Button onClick={onSignOutClick} color="secondary">
             Sign Out
           </Button>
         ) : (
-          <HeaderLink href="/auth/signup" color="inherit">
+          <HeaderButton component="a" href="/auth/signup" color="secondary">
             Sign Up
-          </HeaderLink>
+          </HeaderButton>
         )}
-        <EcoOutlinedIcon className={classes.logoStyles} />
+        <EcoOutlinedIcon className={classes.logoStyles} color="secondary" />
       </Toolbar>
     </AppBar>
   );

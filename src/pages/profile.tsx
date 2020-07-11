@@ -9,7 +9,7 @@ const ProfilePage: NextPage = () => {
   return (
     <Fragment>
       <Head>
-        <title>ProfilePage</title>
+        <title>My App | ProfilePage</title>
       </Head>
       <Profile />
     </Fragment>

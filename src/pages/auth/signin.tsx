@@ -9,7 +9,7 @@ const SignInPage: NextPage = () => {
   return (
     <Fragment>
       <Head>
-        <title>Sign In</title>
+        <title>My App | Sign In</title>
       </Head>
       <SignIn />
     </Fragment>

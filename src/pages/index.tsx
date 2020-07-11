@@ -7,7 +7,7 @@ const HomePage: NextPage = () => {
   return (
     <Fragment>
       <Head>
-        <title>Create Next App</title>
+        <title>My App | Home</title>
       </Head>
       <PageTitle>Home Page</PageTitle>
     </Fragment>
