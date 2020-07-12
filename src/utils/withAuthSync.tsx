@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { NextPage } from 'next';
 import { useSelector, useDispatch } from 'react-redux';
-import { AppState } from 'redux/root-reducer';
-import { signOutSuccess } from 'redux/auth/actions';
+import { AppState } from 'frontend/redux/root-reducer';
+import { signOutSuccess } from 'frontend/redux/auth/actions';
 
 export const logout = (): void => {
   window.localStorage.setItem('signout', JSON.stringify(Date.now()));

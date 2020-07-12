@@ -1,16 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
-
 import { SignInInput } from 'shared/interfaces';
 import { signInSchema } from 'shared/validation';
-import { signInStart } from 'redux/auth/actions';
-import { AppState } from 'redux/root-reducer';
-import PageTitle from 'components/common/PageTitle';
-import { TextField, Button } from '@material-ui/core';
-import ErrorMessage from './ErrorMessage';
+import { signInStart } from 'frontend/redux/auth/actions';
+import { AppState } from 'frontend/redux/root-reducer';
+import PageTitle from 'frontend/components/common/PageTitle';
+import { TextField } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
 import AuthContainer from './AuthContainer';
 import ResponseErrors from './ResponseErrors';
+import ButtonSubmit from './ButtonSubmit';
 
 const SignIn: React.FC = () => {
   const dispatch = useDispatch();
@@ -37,9 +37,11 @@ const SignIn: React.FC = () => {
           fullWidth
           required
           variant="outlined"
+          autoFocus
+          margin="dense"
           inputRef={register}
         />
-        <ErrorMessage>{errors.email?.message}</ErrorMessage>
+        {errors.email?.message && <Alert severity="error">{errors.email?.message}</Alert>}
 
         <TextField
           label="Password"
@@ -49,13 +51,12 @@ const SignIn: React.FC = () => {
           fullWidth
           required
           variant="outlined"
+          margin="dense"
           inputRef={register}
         />
-        <ErrorMessage>{errors.password?.message}</ErrorMessage>
+        {errors.password?.message && <Alert severity="error">{errors.password?.message}</Alert>}
 
-        <Button type="submit" fullWidth variant="contained" color="secondary">
-          {loading ? 'Loading...' : 'Sign In'}
-        </Button>
+        <ButtonSubmit loading={loading}>Sign In</ButtonSubmit>
       </form>
     </AuthContainer>
   );

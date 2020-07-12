@@ -6,11 +6,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import { theme } from 'styled/theme';
-import { wrapper } from 'redux/store';
-import Layout from 'components/common/Layout';
-import { getViewerStart } from 'redux/auth/actions';
-import { AppState } from 'redux/root-reducer';
+import { theme } from 'frontend/theme';
+import { wrapper } from 'frontend/redux/store';
+import Layout from 'frontend/components/common/Layout';
+import { getViewerStart } from 'frontend/redux/auth/actions';
+import { AppState } from 'frontend/redux/root-reducer';
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
   const dispatch = useDispatch();

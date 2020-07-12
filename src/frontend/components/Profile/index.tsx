@@ -7,8 +7,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-import { AppState } from 'redux/root-reducer';
-import PageTitle from 'components/common/PageTitle';
+import { AppState } from 'frontend/redux/root-reducer';
+import PageTitle from 'frontend/components/common/PageTitle';
 import AuthContainer from '../Auth/AuthContainer';
 
 const Profile: React.FC = () => {
