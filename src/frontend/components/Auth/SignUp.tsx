@@ -2,16 +2,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
 import * as yup from 'yup';
-import { TextField, Button } from '@material-ui/core';
-
-import { signUpStart } from 'redux/auth/actions';
+import { TextField } from '@material-ui/core';
+import { signUpStart } from 'frontend/redux/auth/actions';
 import { SignUpInput } from 'shared/interfaces';
 import { firstNameValidation, emailValidation, passwordValidation } from 'shared/validation';
-import { AppState } from 'redux/root-reducer';
-import PageTitle from 'components/common/PageTitle';
-import ErrorMessage from './ErrorMessage';
+import { AppState } from 'frontend/redux/root-reducer';
+import PageTitle from 'frontend/components/common/PageTitle';
+import Alert from '@material-ui/lab/Alert';
 import AuthContainer from './AuthContainer';
 import ResponseErrors from './ResponseErrors';
+import ButtonSubmit from './ButtonSubmit';
 
 interface SignUpForm extends SignUpInput {
   password2: string;
@@ -56,9 +56,10 @@ const SignUp: React.FC = () => {
           required
           variant="outlined"
           autoFocus
+          margin="dense"
           inputRef={register}
         />
-        <ErrorMessage>{errors.firstName?.message}</ErrorMessage>
+        {errors.firstName?.message && <Alert severity="error">{errors.firstName?.message}</Alert>}
 
         <TextField
           label="Email Address"
@@ -68,9 +69,10 @@ const SignUp: React.FC = () => {
           fullWidth
           required
           variant="outlined"
+          margin="dense"
           inputRef={register}
         />
-        <ErrorMessage>{errors.email?.message}</ErrorMessage>
+        {errors.email?.message && <Alert severity="error">{errors.email?.message}</Alert>}
 
         <TextField
           label="Password"
@@ -80,9 +82,10 @@ const SignUp: React.FC = () => {
           fullWidth
           required
           variant="outlined"
+          margin="dense"
           inputRef={register}
         />
-        <ErrorMessage>{errors.password?.message}</ErrorMessage>
+        {errors.password?.message && <Alert severity="error">{errors.password?.message}</Alert>}
 
         <TextField
           label="Repeat password"
@@ -92,13 +95,12 @@ const SignUp: React.FC = () => {
           fullWidth
           required
           variant="outlined"
+          margin="dense"
           inputRef={register}
         />
-        <ErrorMessage>{errors.password2?.message}</ErrorMessage>
+        {errors.password2?.message && <Alert severity="error">{errors.password2?.message}</Alert>}
 
-        <Button type="submit" fullWidth variant="contained" color="secondary">
-          {loading ? 'Loading...' : 'Sign Up'}
-        </Button>
+        <ButtonSubmit loading={loading}>Sign Up</ButtonSubmit>
       </form>
     </AuthContainer>
   );

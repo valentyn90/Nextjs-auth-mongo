@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import Head from 'next/head';
 import { NextPage } from 'next';
-import PageTitle from 'components/common/PageTitle';
+import PageTitle from 'frontend/components/common/PageTitle';
 
 const HomePage: NextPage = () => {
   return (

@@ -14,6 +14,7 @@
     "@hookform/resolvers": "^0.0.5",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
     "@material-ui/styles": "^4.10.0",
     "axios": "^0.19.2",
     "cookie": "^0.4.1",

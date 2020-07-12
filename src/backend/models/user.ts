@@ -38,8 +38,7 @@ export class User {
   }
 
   toJWT(): TokenPayload {
-    const { id } = this;
-    return { id };
+    return { id: this.id };
   }
 
   async comparePassword(suppliedPassword: string): Promise<boolean> {
