@@ -9,7 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import { AppState } from 'frontend/redux/root-reducer';
 import PageTitle from 'frontend/components/common/PageTitle';
 import { TableHead } from '@material-ui/core';
-import AuthContainer from '../Auth/AuthContainer';
+import AuthContainer from './Auth/AuthContainer';
 
 const Profile: React.FC = () => {
   const { viewer } = useSelector((state: AppState) => state.auth);

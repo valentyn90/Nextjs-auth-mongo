@@ -1,17 +1,14 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, AppBar, Toolbar, Theme, ButtonGroup } from '@material-ui/core';
-import EcoOutlinedIcon from '@material-ui/icons/EcoOutlined';
+import { AppBar, Toolbar, Theme, ButtonGroup, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import HomeIcon from '@material-ui/icons/Home';
 import { AppState } from 'frontend/redux/root-reducer';
 import { signOutStart } from 'frontend/redux/auth/actions';
 import HeaderButton from './HeaderButton';
+import ThemeModeSwitch from './ThemeModeSwitch';
 
 const useStyles = makeStyles((theme: Theme) => ({
-  logoStyles: {
-    marginLeft: 'auto',
-  },
-  buttonGroup: {
+  margins: {
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(2),
       marginRight: theme.spacing(2),
@@ -32,7 +29,7 @@ const Header: React.FC = () => {
   const classes = useStyles();
 
   return (
-    <AppBar position="fixed">
+    <AppBar position="sticky">
       <Toolbar>
         <HeaderButton
           component="a"
@@ -43,27 +40,26 @@ const Header: React.FC = () => {
         >
           HOME
         </HeaderButton>
-        <ButtonGroup className={classes.buttonGroup}>
-          {viewer ? (
+        {viewer ? (
+          <ButtonGroup className={classes.margins}>
             <HeaderButton component="a" href="/profile" variant="contained" color="secondary">
               Profile
             </HeaderButton>
-          ) : (
-            <HeaderButton component="a" href="/auth/signin" color="inherit">
-              Sign In
-            </HeaderButton>
-          )}
-          {viewer ? (
             <Button onClick={onSignOutClick} variant="contained" color="secondary">
               Sign Out
             </Button>
-          ) : (
-            <HeaderButton component="a" href="/auth/signup" color="inherit">
-              Sign Up
-            </HeaderButton>
-          )}
-        </ButtonGroup>
-        <EcoOutlinedIcon className={classes.logoStyles} color="inherit" />
+          </ButtonGroup>
+        ) : (
+          <HeaderButton
+            className={classes.margins}
+            component="a"
+            href="/auth/signin"
+            color="inherit"
+          >
+            Sign In
+          </HeaderButton>
+        )}
+        <ThemeModeSwitch />
       </Toolbar>
     </AppBar>
   );
