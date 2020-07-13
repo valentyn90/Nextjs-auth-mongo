@@ -11,6 +11,12 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
+          <meta name="description" content="Authentication example" />
+          <meta
+            name="keywords"
+            content="typescript, nextjs, mongodb, authentication, middleware, api-routes, jwt, testing, validation, reactjs, redux"
+          />
+          <meta name="author" content="Eduard Shavyrko"></meta>
         </Head>
         <body>
           <Main />

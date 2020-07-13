@@ -25,7 +25,12 @@ const ThemeModeSwitch: React.FC = () => {
   const classes = useStyles();
 
   return (
-    <IconButton className={classes.trigger} color="inherit" onClick={onToggleThemeMode}>
+    <IconButton
+      className={classes.trigger}
+      color="inherit"
+      onClick={onToggleThemeMode}
+      aria-label="Toggle light/dark theme"
+    >
       {paletteType === 'light' ? <Brightness4Icon /> : <Brightness5Icon />}
     </IconButton>
   );
