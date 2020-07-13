@@ -5,7 +5,11 @@ interface Props {
 }
 
 const AuthContainer: React.FC<Props> = ({ children }: Props) => {
-  return <Container maxWidth="sm">{children}</Container>;
+  return (
+    <Container maxWidth="sm" disableGutters>
+      {children}
+    </Container>
+  );
 };
 
 export default AuthContainer;

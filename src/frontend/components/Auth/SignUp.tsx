@@ -12,6 +12,7 @@ import Alert from '@material-ui/lab/Alert';
 import AuthContainer from './AuthContainer';
 import ResponseErrors from './ResponseErrors';
 import ButtonSubmit from './ButtonSubmit';
+import AuthLink from './AuthLink';
 
 interface SignUpForm extends SignUpInput {
   password2: string;
@@ -102,6 +103,7 @@ const SignUp: React.FC = () => {
 
         <ButtonSubmit loading={loading}>Sign Up</ButtonSubmit>
       </form>
+      <AuthLink href="/auth/signin">Already have an account? Sign in</AuthLink>
     </AuthContainer>
   );
 };

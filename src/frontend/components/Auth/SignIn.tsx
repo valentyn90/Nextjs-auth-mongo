@@ -11,6 +11,7 @@ import Alert from '@material-ui/lab/Alert';
 import AuthContainer from './AuthContainer';
 import ResponseErrors from './ResponseErrors';
 import ButtonSubmit from './ButtonSubmit';
+import AuthLink from './AuthLink';
 
 const SignIn: React.FC = () => {
   const dispatch = useDispatch();
@@ -58,6 +59,8 @@ const SignIn: React.FC = () => {
 
         <ButtonSubmit loading={loading}>Sign In</ButtonSubmit>
       </form>
+
+      <AuthLink href="/auth/signup">{"Don't have an account? Sign Up"}</AuthLink>
     </AuthContainer>
   );
 };

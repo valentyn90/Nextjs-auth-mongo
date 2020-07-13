@@ -6,10 +6,10 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
 import { AppState } from 'frontend/redux/root-reducer';
 import PageTitle from 'frontend/components/common/PageTitle';
-import AuthContainer from '../Auth/AuthContainer';
+import { TableHead } from '@material-ui/core';
+import AuthContainer from './Auth/AuthContainer';
 
 const Profile: React.FC = () => {
   const { viewer } = useSelector((state: AppState) => state.auth);
@@ -19,24 +19,31 @@ const Profile: React.FC = () => {
   return (
     <AuthContainer>
       <PageTitle>Profile</PageTitle>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} elevation={6}>
         <Table aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell colSpan={2} align="center">
+                Your Data
+              </TableCell>
+            </TableRow>
+          </TableHead>
           <TableBody>
             <TableRow>
               <TableCell component="th" scope="row">
-                Your name
+                Name
               </TableCell>
               <TableCell align="right">{viewer.firstName}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell component="th" scope="row">
-                Your email
+                Email
               </TableCell>
               <TableCell align="right">{viewer.email}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell component="th" scope="row">
-                Your ID
+                ID
               </TableCell>
               <TableCell align="right">{viewer.id}</TableCell>
             </TableRow>
