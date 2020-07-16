@@ -7,8 +7,6 @@
 - Node.js MongoDB driver;
 - Jest
 
-### The project is not completed yet.
-
 ## Online
 
 https://nextjs-auth-mongo.vercel.app
