@@ -1,5 +1,5 @@
 import { SerializedError } from 'backend/errors/custom-error';
-import { Box } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
 import Alert from '@material-ui/lab/Alert';
 
 interface Props {

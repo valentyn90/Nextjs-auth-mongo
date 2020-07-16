@@ -1,11 +1,16 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { AppBar, Toolbar, Theme, ButtonGroup, Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import { Theme } from '@material-ui/core/styles/createMuiTheme';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 import HomeIcon from '@material-ui/icons/Home';
 import { AppState } from 'frontend/redux/root-reducer';
 import { signOutStart } from 'frontend/redux/auth/actions';
-import HeaderButton from './HeaderButton';
+import { Fragment } from 'react';
+import LinkButton from '../common/LinkButton';
 import ThemeModeSwitch from './ThemeModeSwitch';
+import AccountIcon from './AccountIcon';
 
 const useStyles = makeStyles((theme: Theme) => ({
   margins: {
@@ -31,33 +36,20 @@ const Header: React.FC = () => {
   return (
     <AppBar position="sticky">
       <Toolbar>
-        <HeaderButton
-          component="a"
-          href="/"
-          variant="contained"
-          color="default"
-          startIcon={<HomeIcon />}
-        >
+        <LinkButton href="/" variant="contained" color="default" startIcon={<HomeIcon />}>
           HOME
-        </HeaderButton>
+        </LinkButton>
         {viewer ? (
-          <ButtonGroup className={classes.margins}>
-            <HeaderButton component="a" href="/profile" variant="contained" color="secondary">
-              Profile
-            </HeaderButton>
+          <Fragment>
+            <AccountIcon />
             <Button onClick={onSignOutClick} variant="contained" color="secondary">
               Sign Out
             </Button>
-          </ButtonGroup>
+          </Fragment>
         ) : (
-          <HeaderButton
-            className={classes.margins}
-            component="a"
-            href="/auth/signin"
-            color="inherit"
-          >
+          <LinkButton className={classes.margins} href="/auth/signin" color="inherit">
             Sign In
-          </HeaderButton>
+          </LinkButton>
         )}
         <ThemeModeSwitch />
       </Toolbar>
