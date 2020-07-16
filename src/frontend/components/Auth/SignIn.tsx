@@ -6,7 +6,7 @@ import { signInSchema } from 'shared/validation';
 import { signInStart } from 'frontend/redux/auth/actions';
 import { AppState } from 'frontend/redux/root-reducer';
 import PageTitle from 'frontend/components/common/PageTitle';
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import Alert from '@material-ui/lab/Alert';
 import AuthContainer from './AuthContainer';
 import ResponseErrors from './ResponseErrors';
@@ -48,7 +48,7 @@ const SignIn: React.FC = () => {
           label="Password"
           name="password"
           id="password"
-          autoComplete="new-password"
+          autoComplete="current-password"
           fullWidth
           required
           variant="outlined"
