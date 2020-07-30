@@ -11,9 +11,9 @@
 
 https://nextjs-auth-mongo.vercel.app
 
-## Prepare
+## Run on your machine
 
-Add `.env.local` file with secrets into the root directory:
+### Add `.env.local` file with secrets into the root directory:
 
 ```
 MONGO_URI=
@@ -30,10 +30,7 @@ DB_NAME=db_name
 JWT_KEY=bitjnOIJ6522MINijnmMiom489vreb
 TOKEN_EXPIRES_IN=1m
 ```
-
-## Getting Started
-
-First, install dependencies:
+### Install dependencies:
 
 ```bash
 npm i
@@ -41,7 +38,7 @@ npm i
 yarn
 ```
 
-Second, run the development server:
+### Run the development server:
 
 ```bash
 npm run dev
