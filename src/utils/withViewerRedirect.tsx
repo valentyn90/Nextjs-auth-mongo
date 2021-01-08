@@ -11,7 +11,7 @@ export const withViewer = (Component: NextPage): NextPage => {
 
     useEffect(() => {
       if (viewer) {
-        router.replace('/');
+        router.replace('/profile');
       }
     }, [router, viewer]);
 
