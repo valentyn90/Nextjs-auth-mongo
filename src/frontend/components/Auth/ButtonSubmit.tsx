@@ -13,7 +13,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-const ButtonSubmit: React.FC<Props> = ({ loading, children }: Props) => {
+export const ButtonSubmit: React.FC<Props> = ({ loading, children }: Props) => {
   const classes = useStyles();
   return (
     <Button className={classes.button} type="submit" fullWidth variant="contained" color="primary">
@@ -21,5 +21,3 @@ const ButtonSubmit: React.FC<Props> = ({ loading, children }: Props) => {
     </Button>
   );
 };
-
-export default ButtonSubmit;

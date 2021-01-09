@@ -6,7 +6,7 @@ interface Props {
   errors: SerializedError[];
 }
 
-const ResponseErrors: React.FC<Props> = ({ errors }: Props) => {
+export const ResponseErrors: React.FC<Props> = ({ errors }: Props) => {
   return (
     <Box mb={2}>
       {errors.map(({ message }, i) => (
@@ -17,5 +17,3 @@ const ResponseErrors: React.FC<Props> = ({ errors }: Props) => {
     </Box>
   );
 };
-
-export default ResponseErrors;

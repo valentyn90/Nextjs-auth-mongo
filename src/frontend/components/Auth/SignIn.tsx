@@ -5,15 +5,15 @@ import { SignInInput } from 'shared/interfaces';
 import { signInSchema } from 'shared/validation';
 import { signInStart } from 'frontend/redux/auth/actions';
 import { AppState } from 'frontend/redux/root-reducer';
-import PageTitle from 'frontend/components/common/PageTitle';
+import { PageTitle } from 'frontend/components/common/PageTitle';
 import TextField from '@material-ui/core/TextField';
 import Alert from '@material-ui/lab/Alert';
-import AuthContainer from './AuthContainer';
-import ResponseErrors from './ResponseErrors';
-import ButtonSubmit from './ButtonSubmit';
-import AuthLink from './AuthLink';
+import { AuthContainer } from './AuthContainer';
+import { ResponseErrors } from './ResponseErrors';
+import { ButtonSubmit } from './ButtonSubmit';
+import { AuthLink } from './AuthLink';
 
-const SignIn: React.FC = () => {
+export const SignIn: React.FC = () => {
   const dispatch = useDispatch();
   const { signInErrors, loading } = useSelector((state: AppState) => state.auth);
 
@@ -64,5 +64,3 @@ const SignIn: React.FC = () => {
     </AuthContainer>
   );
 };
-
-export default SignIn;

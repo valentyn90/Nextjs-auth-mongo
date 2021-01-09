@@ -12,16 +12,13 @@ const useStyles = makeStyles({
   },
 });
 
-const ThemeModeSwitch: React.FC = () => {
+export const ThemeModeSwitch: React.FC = () => {
   const dispatch = useDispatch();
   const { paletteType } = useSelector((state: AppState) => state.themeMode);
 
   const onToggleThemeMode = () => {
-    if (paletteType === 'light') {
-      dispatch(setDarkMode());
-    } else {
-      dispatch(setLightMode());
-    }
+    const action = paletteType === 'light' ? setDarkMode() : setLightMode();
+    dispatch(action);
   };
   const classes = useStyles();
 
@@ -36,5 +33,3 @@ const ThemeModeSwitch: React.FC = () => {
     </IconButton>
   );
 };
-
-export default ThemeModeSwitch;
