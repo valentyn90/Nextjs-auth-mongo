@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers';
+import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { signUpStart } from 'frontend/redux/auth/actions';
 import { SignUpInput } from 'shared/interfaces';
