@@ -21,3 +21,7 @@ export interface Viewer {
   firstName: string;
   email: string;
 }
+
+export interface SignUpForm extends SignUpInput {
+  password2: string;
+}

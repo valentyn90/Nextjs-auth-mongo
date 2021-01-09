@@ -23,3 +23,16 @@ export const signInSchema = yup.object().shape({
   email: emailValidation,
   password: yup.string().trim().required('Password is required'),
 });
+
+export const signUpSchema = yup.object().shape({
+  firstName: firstNameValidation,
+  email: emailValidation,
+  password: passwordValidation,
+  password2: yup
+    .string()
+    .trim()
+    .when('password', {
+      is: (val) => (val && val.length > 0 ? true : false),
+      then: yup.string().oneOf([yup.ref('password')], 'Both passwords must be the same'),
+    }),
+});

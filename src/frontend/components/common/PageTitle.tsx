@@ -4,12 +4,10 @@ interface Props {
   children: string;
 }
 
-const PageTitle: React.FC<Props> = ({ children }: Props) => {
+export const PageTitle: React.FC<Props> = ({ children }: Props) => {
   return (
     <Typography variant="h4" component="h1" gutterBottom>
       {children}
     </Typography>
   );
 };
-
-export default PageTitle;

@@ -8,14 +8,14 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 import { createTheme } from 'frontend/theme';
 import { wrapper } from 'frontend/redux/store';
-import Layout from 'frontend/components/Layout';
+import { Layout } from 'frontend/components/Layout';
 import { getViewerStart } from 'frontend/redux/auth/actions';
 import { AppState } from 'frontend/redux/root-reducer';
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
   const dispatch = useDispatch();
   const { viewer } = useSelector((state: AppState) => state.auth);
-  const { paletteType } = useSelector((state: AppState) => state.themeMode);
+  const { appPaletteType: paletteType } = useSelector((state: AppState) => state.themeMode);
 
   const theme = createTheme(paletteType);
 

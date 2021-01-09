@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { NextPage } from 'next';
 
 import { withAuthSync } from 'utils/withAuthSync';
-import Profile from 'frontend/components/Profile';
+import { Profile } from 'frontend/components/Profile';
 
 const ProfilePage: NextPage = () => {
   return (

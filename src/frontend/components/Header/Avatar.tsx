@@ -2,7 +2,7 @@ import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import IconButton from '@material-ui/core/IconButton';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import LinkLink from '../common/LinkLink';
+import { LinkLink } from '../common/LinkLink';
 
 const useStyles = makeStyles((theme: Theme) => ({
   icon: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const AccountIcon: React.FC = () => {
+export const Avatar: React.FC = () => {
   const classes = useStyles();
 
   return (
@@ -29,5 +29,3 @@ const AccountIcon: React.FC = () => {
     </LinkLink>
   );
 };
-
-export default AccountIcon;

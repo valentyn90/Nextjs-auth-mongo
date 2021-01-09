@@ -7,7 +7,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-const LinkLink: React.FC<Props> = ({ nextLinkProps, muiLinkProps, children }: Props) => {
+export const LinkLink: React.FC<Props> = ({ nextLinkProps, muiLinkProps, children }: Props) => {
   return (
     <NextLink {...nextLinkProps} passHref>
       <MuiLink {...muiLinkProps} component="a">
@@ -16,5 +16,3 @@ const LinkLink: React.FC<Props> = ({ nextLinkProps, muiLinkProps, children }: Pr
     </NextLink>
   );
 };
-
-export default LinkLink;

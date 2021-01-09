@@ -2,7 +2,7 @@ import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
-import Header from '../Header';
+import { Header } from '../Header';
 
 const useStyles = makeStyles((theme: Theme) => ({
   main: {
@@ -23,7 +23,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-const Layout: React.FC<Props> = ({ children }: Props) => {
+export const Layout: React.FC<Props> = ({ children }: Props) => {
   const classes = useStyles();
   return (
     <Paper style={{ height: '100vh' }}>
@@ -34,5 +34,3 @@ const Layout: React.FC<Props> = ({ children }: Props) => {
     </Paper>
   );
 };
-
-export default Layout;
