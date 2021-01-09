@@ -1,13 +1,8 @@
 import Button from '@material-ui/core/Button';
-import { useDispatch } from 'react-redux';
-import { signOutStart } from 'frontend/redux/auth/actions';
+import { useSignOut } from './hooks/useSignOut';
 
 export const SignOutButton: React.FC = () => {
-  const dispatch = useDispatch();
-
-  const onSignOutClick = () => {
-    dispatch(signOutStart());
-  };
+  const { onSignOutClick } = useSignOut();
 
   return (
     <Button onClick={onSignOutClick} variant="contained" color="secondary">

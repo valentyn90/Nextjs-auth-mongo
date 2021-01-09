@@ -15,7 +15,7 @@ import { AppState } from 'frontend/redux/root-reducer';
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
   const dispatch = useDispatch();
   const { viewer } = useSelector((state: AppState) => state.auth);
-  const { paletteType } = useSelector((state: AppState) => state.themeMode);
+  const { appPaletteType: paletteType } = useSelector((state: AppState) => state.themeMode);
 
   const theme = createTheme(paletteType);
 
