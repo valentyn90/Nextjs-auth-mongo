@@ -1,7 +1,7 @@
 import Typography from '@material-ui/core/Typography';
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import LinkLink from '../common/LinkLink';
+import { LinkLink } from '../common/LinkLink';
 
 const useStyles = makeStyles((theme: Theme) => ({
   linkAnchor: {
@@ -15,7 +15,7 @@ interface Props {
   children: NonNullable<React.ReactNode>;
 }
 
-const AuthLink: React.FC<Props> = ({ href, children }: Props) => {
+export const AuthLink: React.FC<Props> = ({ href, children }: Props) => {
   const clasess = useStyles();
   return (
     <LinkLink
@@ -26,5 +26,3 @@ const AuthLink: React.FC<Props> = ({ href, children }: Props) => {
     </LinkLink>
   );
 };
-
-export default AuthLink;

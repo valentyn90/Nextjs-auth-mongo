@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { NextPage } from 'next';
 import { Fragment } from 'react';
 
-import SignIn from 'frontend/components/Auth/SignIn';
+import { SignIn } from 'frontend/components/Auth/SignIn';
 import { withViewer } from 'utils/withViewerRedirect';
 
 const SignInPage: NextPage = () => {

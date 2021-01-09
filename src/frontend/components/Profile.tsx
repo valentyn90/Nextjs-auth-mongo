@@ -8,10 +8,10 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TableHead from '@material-ui/core/TableHead';
 import { AppState } from 'frontend/redux/root-reducer';
-import PageTitle from 'frontend/components/common/PageTitle';
-import AuthContainer from './Auth/AuthContainer';
+import { PageTitle } from 'frontend/components/common/PageTitle';
+import { AuthContainer } from './Auth/AuthContainer';
 
-const Profile: React.FC = () => {
+export const Profile: React.FC = () => {
   const { viewer } = useSelector((state: AppState) => state.auth);
 
   if (!viewer) return null;
@@ -53,5 +53,3 @@ const Profile: React.FC = () => {
     </AuthContainer>
   );
 };
-
-export default Profile;

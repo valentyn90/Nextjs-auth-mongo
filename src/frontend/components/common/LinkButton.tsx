@@ -5,7 +5,7 @@ interface Props {
   href: string;
 }
 
-const LinkButton: React.FC<ButtonProps<'a', Props>> = ({
+export const LinkButton: React.FC<ButtonProps<'a', Props>> = ({
   href,
   children,
   ...otherProps
@@ -18,5 +18,3 @@ const LinkButton: React.FC<ButtonProps<'a', Props>> = ({
     </NextLink>
   );
 };
-
-export default LinkButton;
