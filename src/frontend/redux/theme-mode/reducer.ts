@@ -2,7 +2,7 @@ import { ThemeMode } from './interfaces';
 import { ThemeModeAction, ThemeActionTypes } from './action-types';
 
 export const initialState: ThemeMode = {
-  paletteType: 'light',
+  appPaletteType: 'light',
 };
 
 export const themeModeReducer = (
@@ -13,13 +13,13 @@ export const themeModeReducer = (
     case ThemeActionTypes.setDarkMode:
       return {
         ...state,
-        paletteType: 'dark',
+        appPaletteType: 'dark',
       };
 
     case ThemeActionTypes.setLightMode:
       return {
         ...state,
-        paletteType: 'light',
+        appPaletteType: 'light',
       };
 
     default:
