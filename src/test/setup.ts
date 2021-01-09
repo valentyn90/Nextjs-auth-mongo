@@ -8,6 +8,7 @@ let db: Db;
 beforeAll(async () => {
   process.env.JWT_KEY = 'asdfghjk';
   process.env.DB_NAME = 'testDb';
+  process.env.TOKEN_EXPIRES_IN = '1m';
 
   mongo = new MongoMemoryServer();
   process.env.MONGO_URI = await mongo.getUri();
