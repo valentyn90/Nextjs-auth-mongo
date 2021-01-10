@@ -10,6 +10,7 @@ import { ButtonSubmit } from './ButtonSubmit';
 import { AuthLink } from './AuthLink';
 import { useSignIn } from './hooks/useSignIn';
 import { TextFieldContainer } from './TextFieldContainer';
+import { routes } from 'frontend/routes';
 
 export const SignIn: React.FC = () => {
   const { signInErrors, loading, onSubmit } = useSignIn();
@@ -55,7 +56,7 @@ export const SignIn: React.FC = () => {
         <ButtonSubmit loading={loading}>Sign In</ButtonSubmit>
       </form>
 
-      <AuthLink href="/auth/signup">{"Don't have an account? Sign Up"}</AuthLink>
+      <AuthLink href={routes.authSignup}>{"Don't have an account? Sign Up"}</AuthLink>
     </AuthContainer>
   );
 };
