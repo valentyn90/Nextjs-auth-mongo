@@ -4,13 +4,13 @@ import { SignInInput } from 'shared/interfaces';
 import { signInSchema } from 'shared/validation';
 import { PageTitle } from 'frontend/components/common/PageTitle';
 import TextField from '@material-ui/core/TextField';
+import { routes } from 'frontend/routes';
 import { AuthContainer } from './AuthContainer';
 import { ResponseErrors } from './ResponseErrors';
 import { ButtonSubmit } from './ButtonSubmit';
 import { AuthLink } from './AuthLink';
 import { useSignIn } from './hooks/useSignIn';
 import { TextFieldContainer } from './TextFieldContainer';
-import { routes } from 'frontend/routes';
 
 export const SignIn: React.FC = () => {
   const { signInErrors, loading, onSubmit } = useSignIn();
