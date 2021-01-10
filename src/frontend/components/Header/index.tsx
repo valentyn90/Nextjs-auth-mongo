@@ -2,7 +2,6 @@ import { useSelector } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import dynamic from 'next/dynamic';
-
 import { AppState } from 'frontend/redux/root-reducer';
 import { ThemeModeSwitch } from './ThemeModeSwitch';
 import { HomeLink } from './HomeLink';
