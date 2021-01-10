@@ -10,6 +10,7 @@ import { ButtonSubmit } from './ButtonSubmit';
 import { AuthLink } from './AuthLink';
 import { useSignUp } from './hooks/useSignUp';
 import { TextFieldContainer } from './TextFieldContainer';
+import { routes } from 'frontend/routes';
 
 export const SignUp: React.FC = () => {
   const { signUpErrors, loading, onSubmit } = useSignUp();
@@ -82,7 +83,7 @@ export const SignUp: React.FC = () => {
 
         <ButtonSubmit loading={loading}>Sign Up</ButtonSubmit>
       </form>
-      <AuthLink href="/auth/signin">Already have an account? Sign in</AuthLink>
+      <AuthLink href={routes.authSignin}>Already have an account? Sign in</AuthLink>
     </AuthContainer>
   );
 };

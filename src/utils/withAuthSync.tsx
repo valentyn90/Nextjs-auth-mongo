@@ -4,6 +4,7 @@ import { NextPage } from 'next';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from 'frontend/redux/root-reducer';
 import { signOutSuccess } from 'frontend/redux/auth/actions';
+import { routes } from 'frontend/routes';
 
 export const logout = (): void => {
   window.localStorage.setItem('signout', JSON.stringify(Date.now()));
@@ -18,7 +19,7 @@ export const withAuthSync = (Component: NextPage): NextPage => {
     useEffect(() => {
       if (viewer === null) {
         console.log({ viewer });
-        router.push('/auth/signin');
+        router.push(routes.authSignin);
       }
     }, [router, viewer]);
 

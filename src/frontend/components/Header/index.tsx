@@ -8,8 +8,8 @@ import { HomeLink } from './HomeLink';
 const ViewerView = dynamic<Record<string, unknown>>(() =>
   import('./ViewerView').then((mod) => mod.ViewerView),
 );
-const SignInLink = dynamic<Record<string, unknown>>(() =>
-  import('./SignInLink').then((mod) => mod.SignInLink),
+const AuthLink = dynamic<Record<string, unknown>>(() =>
+  import('./AuthLink').then((mod) => mod.AuthLink),
 );
 
 export const Header: React.FC = () => {
@@ -19,7 +19,7 @@ export const Header: React.FC = () => {
     <AppBar position="sticky">
       <Toolbar>
         <HomeLink />
-        {viewer ? <ViewerView /> : <SignInLink />}
+        {viewer ? <ViewerView /> : <AuthLink />}
         <ThemeModeSwitch />
       </Toolbar>
     </AppBar>
