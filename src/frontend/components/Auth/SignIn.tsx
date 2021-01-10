@@ -4,6 +4,7 @@ import { SignInInput } from 'shared/interfaces';
 import { signInSchema } from 'shared/validation';
 import { PageTitle } from 'frontend/components/common/PageTitle';
 import TextField from '@material-ui/core/TextField';
+import { routes } from 'frontend/routes';
 import { AuthContainer } from './AuthContainer';
 import { ResponseErrors } from './ResponseErrors';
 import { ButtonSubmit } from './ButtonSubmit';
@@ -55,7 +56,7 @@ export const SignIn: React.FC = () => {
         <ButtonSubmit loading={loading}>Sign In</ButtonSubmit>
       </form>
 
-      <AuthLink href="/auth/signup">{"Don't have an account? Sign Up"}</AuthLink>
+      <AuthLink href={routes.authSignup}>{"Don't have an account? Sign Up"}</AuthLink>
     </AuthContainer>
   );
 };
