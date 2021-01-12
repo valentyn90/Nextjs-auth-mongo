@@ -5,7 +5,6 @@ import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-
 import { createTheme } from 'frontend/theme';
 import { wrapper } from 'frontend/redux/store';
 import { Layout } from 'frontend/components/Layout';

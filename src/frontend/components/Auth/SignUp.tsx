@@ -1,9 +1,9 @@
+import TextField from '@material-ui/core/TextField';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SignUpForm } from 'shared/interfaces';
 import { signUpSchema } from 'shared/validation';
 import { PageTitle } from 'frontend/components/common/PageTitle';
-import TextField from '@material-ui/core/TextField';
 import { routes } from 'frontend/routes';
 import { AuthContainer } from './AuthContainer';
 import { ResponseErrors } from './ResponseErrors';

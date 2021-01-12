@@ -1,7 +1,7 @@
-import { Theme } from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { useRouter } from 'next/router';
 import { routes } from 'frontend/routes';
+import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import { LinkButton } from '../common/LinkButton';
 
 const useStyles = makeStyles((theme: Theme) => ({
