@@ -1,5 +1,5 @@
-import * as React from 'react';
 import Alert from '@material-ui/lab/Alert';
+import { Fragment } from 'react';
 
 interface Props {
   children: React.ReactNode;
@@ -8,9 +8,9 @@ interface Props {
 
 export const TextFieldContainer: React.FC<Props> = ({ children, errorMessage }: Props) => {
   return (
-    <React.Fragment>
+    <Fragment>
       {children}
       {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
-    </React.Fragment>
+    </Fragment>
   );
 };

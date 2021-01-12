@@ -1,6 +1,6 @@
-import { SerializedError } from 'backend/errors/custom-error';
 import Box from '@material-ui/core/Box';
 import Alert from '@material-ui/lab/Alert';
+import { SerializedError } from 'backend/errors/custom-error';
 
 interface Props {
   errors: SerializedError[];
