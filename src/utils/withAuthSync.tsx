@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from 'frontend/redux/root-reducer';
 import { signOutSuccess } from 'frontend/redux/auth/actions';
 import { routes } from 'frontend/routes';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export const logout = (): void => {
   window.localStorage.setItem('signout', JSON.stringify(Date.now()));
@@ -38,7 +39,7 @@ export const withAuthSync = (Component: NextPage): NextPage => {
       };
     }, [dispatch, router]);
 
-    return viewer ? <Component {...props} /> : <h1>Loading...</h1>;
+    return viewer ? <Component {...props} /> : <CircularProgress />;
   };
 
   return Wrapper;

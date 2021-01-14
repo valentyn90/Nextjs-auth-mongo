@@ -1,14 +1,15 @@
 import Typography from '@material-ui/core/Typography';
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { LinkLink } from '../common/LinkLink';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  linkAnchor: {
-    marginTop: theme.spacing(1),
-    float: 'right',
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    linkAnchor: {
+      marginTop: theme.spacing(1),
+      float: 'right',
+    },
+  }),
+);
 
 interface Props {
   href: string;
