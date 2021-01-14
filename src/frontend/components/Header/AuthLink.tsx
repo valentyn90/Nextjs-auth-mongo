@@ -1,19 +1,20 @@
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { useRouter } from 'next/router';
 import { routes } from 'frontend/routes';
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import { LinkButton } from '../common/LinkButton';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  margins: {
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(2),
-      marginRight: theme.spacing(2),
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    margins: {
+      [theme.breakpoints.up('sm')]: {
+        marginLeft: theme.spacing(2),
+        marginRight: theme.spacing(2),
+      },
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
     },
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-  },
-}));
+  }),
+);
 
 export const AuthLink: React.FC = () => {
   const classes = useStyles();
