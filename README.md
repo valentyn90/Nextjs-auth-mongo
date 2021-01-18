@@ -2,6 +2,7 @@
 
 - serverside rendering;
 - serverless [`api-routes`](https://nextjs.org/docs/api-routes/introduction);
+- error handling;
 - JWT;
 - Redux;
 - Node.js MongoDB driver;
@@ -30,6 +31,7 @@ DB_NAME=db_name
 JWT_KEY=bitjnOIJ6522MINijnmMiom489vreb
 TOKEN_EXPIRES_IN=1m
 ```
+
 ### Install dependencies:
 
 ```bash
