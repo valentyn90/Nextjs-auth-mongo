@@ -19,7 +19,6 @@ export const withAuthSync = (Component: NextPage): NextPage => {
 
     useEffect(() => {
       if (viewer === null) {
-        console.log({ viewer });
         router.push(routes.authSignin);
       }
     }, [router, viewer]);
